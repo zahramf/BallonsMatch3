@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3659e4fa13760c243b8861de36e88c17, type: 3}
+  m_Name: Level 9
+  m_EditorClassIdentifier: 
+  width: 8
+  height: 8
+  boardLayout:
+  - x: 4
+    y: 0
+    tileKind: 1
+  - x: 3
+    y: 1
+    tileKind: 1
+  - x: 4
+    y: 1
+    tileKind: 1
+  - x: 3
+    y: 2
+    tileKind: 1
+  - x: 3
+    y: 3
+    tileKind: 1
+  - x: 4
+    y: 3
+    tileKind: 1
+  - x: 4
+    y: 4
+    tileKind: 1
+  - x: 3
+    y: 5
+    tileKind: 1
+  - x: 4
+    y: 5
+    tileKind: 1
+  - x: 3
+    y: 6
+    tileKind: 1
+  - x: 3
+    y: 7
+    tileKind: 1
+  - x: 4
+    y: 7
+    tileKind: 1
+  gamePieces:
+  - {fileID: 8585569578225059422, guid: ae11c46aa6ad66e4199d35e5982e26e8, type: 3}
+  - {fileID: 4823393930512964276, guid: 8cbe5b99dfe1f9c4dae255593e3ef845, type: 3}
+  - {fileID: 8338492191019013582, guid: d2c54f87496ef764da55980453bbecab, type: 3}
+  - {fileID: 2839782593335692562, guid: fb3b8130e8604bf409cead9c8adb24e2, type: 3}
+  - {fileID: 8535852802761219697, guid: dfc7bfcca4844e54e8c64217446011a9, type: 3}
+  - {fileID: 8535852802761219697, guid: 89e412da1a5692d448b34d5a3eafcfb9, type: 3}
+  scoreGoals: 64000000c8000000f4010000
+  endGameReqirements:
+    gameType: 0
+    counterValue: 22
+  levelGoals:
+  - numberNeeded: 26
+    numberCollected: 0
+    goalSprite: {fileID: 21300000, guid: 25fa82a8f3a2a054a805b646e03e598b, type: 3}
+    matchValue: PinkDot
+  - numberNeeded: 26
+    numberCollected: 0
+    goalSprite: {fileID: 21300000, guid: 8a3811ccec7fb6b46af8dfeceef7b426, type: 3}
+    matchValue: YellowDot
+  - numberNeeded: 14
+    numberCollected: 0
+    goalSprite: {fileID: 21300000, guid: b029a675a3d681b4386e4b326a79605c, type: 3}
+    matchValue: OrangeDot
+  - numberNeeded: 5
+    numberCollected: 0
+    goalSprite: {fileID: 21300000, guid: 9a686633f98d23c4d8a19c2d801c8325, type: 3}
+    matchValue: RedDot

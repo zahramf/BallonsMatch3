@@ -10,6 +10,13 @@ TagManager:
   - RedDot
   - YellowDot
   - TileNormal
+  - Color
+  - Board
+  - Concrete
+  - Chocolate
+  - Breakable
+  - Lock
+  - GreenDot
   layers:
   - Default
   - TransparentFX
@@ -46,4 +53,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Marker
+    uniqueID: 57222505
     locked: 0
