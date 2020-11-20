@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Dot : MonoBehaviour
 {
@@ -60,19 +61,37 @@ public class Dot : MonoBehaviour
     }
 
     //for test and debug
-    private void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            isAdjacentBomb = true;
-            GameObject marker = Instantiate(adjacentMarker, transform.position, Quaternion.identity);
-            marker.transform.parent = this.transform;
-        }
-    }
+    //private void OnMouseOver()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
 
+    //        GetRow(1);
+    //        Debug.Log("test");
+    //    }
+    //}
+    //void GetRow(int row)
+    //{
+    //    isMatched = true;
+    //    if (isMatched == true)
+    //    {
+    //        List<GameObject> dots = new List<GameObject>();
+    //        for (int i = 0; i < board.width; i++)
+    //        {
+    //            if (board.allDots[i, row] != null)
+    //            {
+
+    //                board.allDots[i, row].GetComponent<Dot>().isMatched = true;
+    //            }
+    //        }
+    //    }
+      
+
+    //}
     // Update is called once per frame
     void Update()
     {
+        //isMatched = true;
         /*
         //FindMatches();
         if (isMatched)
@@ -354,6 +373,7 @@ public class Dot : MonoBehaviour
             isRowBomb = true;
             GameObject arrow = Instantiate(rowArrow, transform.position, Quaternion.identity);
             arrow.transform.parent = this.transform;
+            Debug.Log("MakeRowBomb");
         }
        
     }
@@ -390,6 +410,7 @@ public class Dot : MonoBehaviour
             isAdjacentBomb = true;
             GameObject marker = Instantiate(adjacentMarker, transform.position, Quaternion.identity);
             marker.transform.parent = this.transform;
+            Debug.Log("MakeAdjacentBomb");
         }
        
     }

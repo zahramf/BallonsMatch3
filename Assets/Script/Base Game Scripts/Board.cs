@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public enum GameState
 {
@@ -111,6 +112,34 @@ public class Board : MonoBehaviour
         //}
     }
 
+    //private void OnMouseOver()
+    //{
+    //    List<GameObject> currentMatches = new List<GameObject>();
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        GetRow(1);
+
+    //        //currentMatches.Union(GetRow(1));
+    //        Debug.Log("test");
+    //    }
+    //}
+    //List<GameObject> GetRow(int row)
+    //{
+
+    //    List<GameObject> dots = new List<GameObject>();
+    //    for (int i = 0; i < width; i++)
+    //    {
+    //        if (allDots[i, row] != null)
+    //        {
+
+    //            dots.Add(allDots[i, row]);
+    //            allDots[i, row].GetComponent<Dot>().isMatched = true;
+    //        }
+    //    }
+    //    return dots;
+    //    //Debug.Log("Dots" + dots);
+
+    //}
 
     // Start is called before the first frame update
     void Start()
@@ -220,6 +249,10 @@ public class Board : MonoBehaviour
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     Vector2 tilePosition = new Vector2(i, j);
                     GameObject tile = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
+                    //if (Input.GetMouseButtonDown(0))
+                    //{
+                    //    Debug.Log("Position :" + tilePosition);
+                    //}
                     tile.transform.parent = this.transform;
                     tile.name = "(" + i + "," + j + ")";
                     int dotToUse = Random.Range(0, gamePieces.Length);
@@ -659,6 +692,7 @@ public class Board : MonoBehaviour
                 }
             
         }
+        Debug.Log("BombRow");
 
     }
 
