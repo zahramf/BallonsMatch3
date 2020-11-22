@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
+    public GameObject buyMenu;
     public Text coinText;
     GameData gameData;
     public int coin;
@@ -14,7 +15,7 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //coint = 100;
+        coint = 1000;
         //coin+= PlayerPrefs.GetInt("Coin");
         gameData = FindObjectOfType<GameData>();
         backSplash = FindObjectOfType<BackToSplash>();
@@ -42,6 +43,7 @@ public class Manager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+
                 SceneManager.LoadScene("Start");
 
                 //Application.Quit();
@@ -53,4 +55,13 @@ public class Manager : MonoBehaviour
 
     //   ga
     //}
+
+    public void Buy()
+    {
+        buyMenu.SetActive(true);
+    }
+    public void CloseBuyBtn()
+    {
+        buyMenu.SetActive(false);
+    }
 }
