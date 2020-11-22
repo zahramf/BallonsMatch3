@@ -19,6 +19,7 @@ public class EndGameRequirement
 }
 public class EndGameManager : MonoBehaviour
 {
+    //public int coin;
     public GameObject movesLable;
     public GameObject timeLable;
     public GameObject YouWinPanel;
@@ -85,8 +86,13 @@ public class EndGameManager : MonoBehaviour
 
     public void WinGame()
     {
+        //coin += 10;
+       
         YouWinPanel.SetActive(true);
+      
         board.currentState = GameState.win;
+        //coin += 10;
+        //Debug.Log("coin" + coin);
         currentCounterValue = 0;
         counter.text = "" + currentCounterValue;
         FadePanelController fade = FindObjectOfType<FadePanelController>();

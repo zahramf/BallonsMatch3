@@ -12,6 +12,8 @@ public class Dot : MonoBehaviour
     public int previousRow;
     public int targetX;
     public int targetY;
+    public int targetxX;
+    public int targetyY;
     public bool isMatched = false;
     public GameObject otherDot;
 
@@ -51,8 +53,8 @@ public class Dot : MonoBehaviour
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
         //board = FindObjectOfType<Board>();
         findMatches = FindObjectOfType<FindMatches>();
-        //targetX = (int)transform.position.x;
-        //targetY = (int)transform.position.y;
+        //targetxX = ()transform.position=row;
+        //targetyY = (int)transform.position.y;
         //row = targetY;
         //column = targetX;
         //previousRow = row;
@@ -100,6 +102,21 @@ public class Dot : MonoBehaviour
             mySprite.color = new Color(0f, 0f, 0f, .2f);
         }
         */
+        ////
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+
+        //    int posX = targetX;
+        //    Debug.Log("posX" + posX);
+
+        //    int posY = targetY;
+        //    Debug.Log("posY" + posY);
+
+        //}
+
+        ///
         targetX = column;
         targetY = row;
         if (Mathf.Abs(targetX - transform.position.x) > .1)
@@ -373,7 +390,7 @@ public class Dot : MonoBehaviour
             isRowBomb = true;
             GameObject arrow = Instantiate(rowArrow, transform.position, Quaternion.identity);
             arrow.transform.parent = this.transform;
-            Debug.Log("MakeRowBomb");
+            //Debug.Log("MakeRowBomb");
         }
        
     }
@@ -410,7 +427,7 @@ public class Dot : MonoBehaviour
             isAdjacentBomb = true;
             GameObject marker = Instantiate(adjacentMarker, transform.position, Quaternion.identity);
             marker.transform.parent = this.transform;
-            Debug.Log("MakeAdjacentBomb");
+            //Debug.Log("MakeAdjacentBomb");
         }
        
     }

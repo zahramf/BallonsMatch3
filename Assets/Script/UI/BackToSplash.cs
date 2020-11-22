@@ -15,11 +15,16 @@ public class BackToSplash : MonoBehaviour
    public Board board;
     public int topLevel;
     public int starLevel;
+    //static public int coin;
+    public int coinp;
+    public int coin;
+
 
     public void WinOk()
     {
         if (gameData != null)
         {
+           
             int doneLevel = board.level;
             Debug.Log("Done" + ":" + doneLevel);
             topLevel = board.level + 1;
@@ -39,10 +44,23 @@ public class BackToSplash : MonoBehaviour
             //PlayerPrefs.SetInt("StarLevel", starLevel);
             gameData.saveData.stars[board.level] = starLevel;
             //Debug.Log("board : " + board.level + " : " + numStars);
-            gameData.Save();
+            coin += 10;
+            PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") + 10);
+            //PlayerPrefs.SetInt("Coin", coin);
+            //coinp=  PlayerPrefs.GetInt("Coin");
+            //gameData.saveData.coins = coin;
+
+            //gameData.Save();
+
+            //PlayerPrefs.SetInt("Coin", coin);
+            //Debug.Log("coinBack" + coinp);
 
         }
+        //coin += 10;
+        //PlayerPrefs.SetInt("Coin", coin);
         SceneManager.LoadScene(sceneToLoad);
+       
+        //coin += 10;
 
     }
 

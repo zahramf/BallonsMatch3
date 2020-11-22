@@ -260,7 +260,7 @@ public class Board : MonoBehaviour
                     while (MatchesAt(i, j, gamePieces[dotToUse]) && maxIterations < 100)
                     {
                         dotToUse = Random.Range(0, gamePieces.Length);
-                        Debug.Log("Maaaaaaaaaaaaaaaaatch");
+                        //Debug.Log("Maaaaaaaaaaaaaaaaatch");
                         maxIterations++;
                         Debug.Log(maxIterations);
                     }
@@ -692,7 +692,7 @@ public class Board : MonoBehaviour
                 }
             
         }
-        Debug.Log("BombRow");
+        //Debug.Log("BombRow");
 
     }
 

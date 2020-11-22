@@ -49,11 +49,11 @@ MonoBehaviour:
     gameType: 0
     counterValue: 14
   levelGoals:
-  - numberNeeded: 16
+  - numberNeeded: 1
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: ab3f5ecbd3b281d45b24f0f11cd21563, type: 3}
     matchValue: BlueDot
-  - numberNeeded: 12
+  - numberNeeded: 1
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: 9a686633f98d23c4d8a19c2d801c8325, type: 3}
     matchValue: RedDot

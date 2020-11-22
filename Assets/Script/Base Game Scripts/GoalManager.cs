@@ -14,6 +14,7 @@ public class BlankGoal
 
 public class GoalManager : MonoBehaviour
 {
+    public int coin;
     public GameObject[] stars;
 
     public int numberOfStar;
@@ -110,10 +111,13 @@ public class GoalManager : MonoBehaviour
                 //gameData.saveData.stars[board.level] = numberOfStar;
 
                 endGame.WinGame();
+              
+
                 //gameData.Save();
             }
             Debug.Log("You Win");
         }
+       
     }
 
     public void CompareGoal(string goalToCompare)

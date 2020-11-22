@@ -12,6 +12,7 @@ public class SaveData
     public bool[] isActive;
     public int[] highScores;
     public int[] stars;
+    public int coins;
 }
 
 
