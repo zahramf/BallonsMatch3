@@ -43,7 +43,7 @@ public class LevelButton : MonoBehaviour
         //Is game data present?
         if (gameData != null)
         {
-            int top = PlayerPrefs.GetInt("Current Level");
+            //int top = PlayerPrefs.GetInt("Current Level");
             //Debug.Log("Player Toooooooooooooooooooooooooooop"+ top);
             //Decide if the level is active
             if (  gameData.saveData.isActive[level - 1])

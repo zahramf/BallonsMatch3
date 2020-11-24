@@ -51,6 +51,8 @@ MonoBehaviour:
   previousRow: 0
   targetX: 0
   targetY: 0
+  targetxX: 0
+  targetyY: 0
   isMatched: 0
   otherDot: {fileID: 0}
   swipeAngle: 0
@@ -104,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b09fdfb84f2e1d94bae7f38d97705e11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49cb2c189d619554bb83338241b2ebfe, type: 3}
   m_Color: {r: 0.990566, g: 0.990566, b: 0.9391687, a: 1}
   m_FlipX: 0
   m_FlipY: 0

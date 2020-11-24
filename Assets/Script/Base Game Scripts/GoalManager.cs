@@ -21,6 +21,7 @@ public class GoalManager : MonoBehaviour
     public BlankGoal[] levelGoals;
     public List<GoalPanel> currentGoals = new List<GoalPanel>();
     public GameObject goalPrefab;
+    public GameObject goalIntroPrefab;
     public GameObject goalIntroParent;
     public GameObject goalGameParent;
     ScoreManager scoreManager;
@@ -67,13 +68,13 @@ public class GoalManager : MonoBehaviour
         for(int i = 0; i < levelGoals.Length; i++)
         {
             //Create a new goalPanel at the goalIntroParent position
-            GameObject goal = Instantiate(goalPrefab, goalIntroParent.transform.position, Quaternion.identity);
+            GameObject goal = Instantiate(goalIntroPrefab, goalIntroParent.transform.position, Quaternion.identity);
             goal.transform.SetParent(goalIntroParent.transform);
 
             //Set Image and text of the goal
             GoalPanel panel = goal.GetComponent<GoalPanel>();
             panel.thisSprite = levelGoals[i].goalSprite;
-            panel.thisString = "0/" + levelGoals[i].numberNeeded;
+            panel.thisString = "0/"+ levelGoals[i].numberNeeded;
 
 
             //Create a new goalPanel at the goalGamePanel position

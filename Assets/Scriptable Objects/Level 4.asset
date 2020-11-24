@@ -54,17 +54,17 @@ MonoBehaviour:
   scoreGoals: 64000000c8000000f4010000
   endGameReqirements:
     gameType: 0
-    counterValue: 14
+    counterValue: 25
   levelGoals:
-  - numberNeeded: 15
+  - numberNeeded: 12
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: 8a3811ccec7fb6b46af8dfeceef7b426, type: 3}
     matchValue: YellowDot
-  - numberNeeded: 15
+  - numberNeeded: 12
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: ab3f5ecbd3b281d45b24f0f11cd21563, type: 3}
     matchValue: BlueDot
-  - numberNeeded: 15
+  - numberNeeded: 12
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: b029a675a3d681b4386e4b326a79605c, type: 3}
     matchValue: OrangeDot

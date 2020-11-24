@@ -29,6 +29,7 @@ public class EndGameManager : MonoBehaviour
     public EndGameRequirement requirements;
     Board board;
     float timerSeconds;
+    Button btn;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +75,7 @@ public class EndGameManager : MonoBehaviour
         if(board.currentState != GameState.pause)
         {
             currentCounterValue--;
+            Debug.Log("currentCounterValue" + currentCounterValue);
             counter.text = "" + currentCounterValue;
 
             if (currentCounterValue <= 0)
@@ -103,6 +105,23 @@ public class EndGameManager : MonoBehaviour
     public void LoseGame()
     {
         TryAgainPanel.SetActive(true);
+        btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
+
+
+        int c = 100;
+        if (c < 10)
+        {
+            btn.interactable = false;
+            //GetComponent<Button>().interactable = false;
+            //btn.interactable = false;
+        }
+        else
+        {
+            btn.enabled = true;
+            //GetComponent<Button>().interactable = true;
+
+            //btn.interactable = true;
+        }
         board.currentState = GameState.lose;
         Debug.Log("You Lose");
         currentCounterValue = 0;
@@ -111,6 +130,7 @@ public class EndGameManager : MonoBehaviour
         fade.GameOver();
 
     }
+    
 
     // Update is called once per frame
     void Update()

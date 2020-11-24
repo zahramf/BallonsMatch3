@@ -8444,7 +8444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.66358656}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.71875, y: 2053.4995}
+  m_AnchoredPosition: {x: 3.71875, y: 2053.5024}
   m_SizeDelta: {x: 10.448944, y: 825.93036}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699402288
@@ -8556,7 +8556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.025006, y: -0.000061035}
+  m_AnchoredPosition: {x: -0.024993896, y: -0.000061035156}
   m_SizeDelta: {x: -0.049988, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &720275781
@@ -10013,7 +10013,7 @@ MonoBehaviour:
   - {fileID: 962045374}
   - {fileID: 656143588}
   levelText: {fileID: 959228738}
-  level: 11
+  level: 15
   confirmPanel: {fileID: 331997596}
 --- !u!222 &824858385
 CanvasRenderer:
@@ -10995,8 +10995,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 428ccb619fae10245ae041f18fac8528, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -13168,7 +13168,7 @@ MonoBehaviour:
   - {fileID: 1782263651}
   - {fileID: 433754236}
   levelText: {fileID: 1101231278}
-  level: 11
+  level: 17
   confirmPanel: {fileID: 331997596}
 --- !u!222 &1142635119
 CanvasRenderer:
@@ -13334,7 +13334,7 @@ MonoBehaviour:
   - {fileID: 162022744}
   - {fileID: 551122295}
   levelText: {fileID: 865174914}
-  level: 11
+  level: 12
   confirmPanel: {fileID: 331997596}
 --- !u!222 &1143439189
 CanvasRenderer:
@@ -15126,7 +15126,7 @@ MonoBehaviour:
   - {fileID: 1052528295}
   - {fileID: 415550101}
   levelText: {fileID: 357201030}
-  level: 11
+  level: 16
   confirmPanel: {fileID: 331997596}
 --- !u!222 &1297733844
 CanvasRenderer:
@@ -16285,7 +16285,7 @@ MonoBehaviour:
   - {fileID: 738613146}
   - {fileID: 437342198}
   levelText: {fileID: 27686611}
-  level: 11
+  level: 13
   confirmPanel: {fileID: 331997596}
 --- !u!222 &1377119773
 CanvasRenderer:
@@ -21239,7 +21239,7 @@ MonoBehaviour:
   - {fileID: 1428256125}
   - {fileID: 2099482258}
   levelText: {fileID: 207644258}
-  level: 11
+  level: 18
   confirmPanel: {fileID: 331997596}
 --- !u!222 &1919315789
 CanvasRenderer:
@@ -22508,7 +22508,7 @@ MonoBehaviour:
   - {fileID: 568626771}
   - {fileID: 1705353632}
   levelText: {fileID: 1018215304}
-  level: 11
+  level: 19
   confirmPanel: {fileID: 331997596}
 --- !u!222 &1992913687
 CanvasRenderer:
@@ -23062,7 +23062,7 @@ MonoBehaviour:
   - {fileID: 989956362}
   - {fileID: 669291694}
   levelText: {fileID: 1238238446}
-  level: 11
+  level: 20
   confirmPanel: {fileID: 331997596}
 --- !u!222 &2064653806
 CanvasRenderer:
@@ -23381,7 +23381,7 @@ MonoBehaviour:
   - {fileID: 97068366}
   - {fileID: 1593446094}
   levelText: {fileID: 1364388495}
-  level: 11
+  level: 14
   confirmPanel: {fileID: 331997596}
 --- !u!222 &2085396944
 CanvasRenderer:

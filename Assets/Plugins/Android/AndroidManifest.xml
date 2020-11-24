@@ -19,8 +19,7 @@
     android:theme="@style/UnityThemeSelector"
     android:icon="@mipmap/app_icon"
     android:label="@string/app_name"
-    android:isGame="true"
-    android:banner="@drawable/app_banner">
+    android:isGame="true">
     
     <activity
       android:name="com.unity3d.player.UnityPlayerActivity"

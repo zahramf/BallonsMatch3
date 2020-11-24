@@ -17,8 +17,10 @@ public class BackToSplash : MonoBehaviour
     public int starLevel;
     //static public int coin;
     public int coinp;
-    public int coin;
-
+    //public int coin;
+    public GameObject tryMenu;
+    public Button btn;
+   public EndGameManager gameMoveRequirement;
 
     public void WinOk()
     {
@@ -26,41 +28,26 @@ public class BackToSplash : MonoBehaviour
         {
            
             int doneLevel = board.level;
-            Debug.Log("Done" + ":" + doneLevel);
             topLevel = board.level + 1;
-            Debug.Log("Top" + ":" + topLevel);
 
             PlayerPrefs.GetInt("Current Level");
-            //PlayerPrefs.SetInt("TopLevel", topLevel);
-            //Debug.Log("Top" + top);
+           
 
 
             starLevel = scoreManager.GetComponent<ScoreManager>().numberStars;
-            //gameData.saveData.isActive[board.level + 1] = true;
 
             gameData.saveData.isActive[topLevel] = true;
 
-            //PlayerPrefs.GetInt("StarLevel");
-            //PlayerPrefs.SetInt("StarLevel", starLevel);
+            
             gameData.saveData.stars[board.level] = starLevel;
-            //Debug.Log("board : " + board.level + " : " + numStars);
-            //coin += 10;
+            
             PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") + 50);
-            //PlayerPrefs.SetInt("Coin", coin);
-            //coinp=  PlayerPrefs.GetInt("Coin");
-            //gameData.saveData.coins = coin;
-
-            //gameData.Save();
-
-            //PlayerPrefs.SetInt("Coin", coin);
-            //Debug.Log("coinBack" + coinp);
+            
 
         }
-        //coin += 10;
-        //PlayerPrefs.SetInt("Coin", coin);
+      
         SceneManager.LoadScene(sceneToLoad);
        
-        //coin += 10;
 
     }
 
@@ -86,12 +73,42 @@ public class BackToSplash : MonoBehaviour
 
     }
 
+    public void ContinueOk()
+    {
+        btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
+        if (btn.interactable = true)
+        {
+            tryMenu.SetActive(false);
+        }
+        //int c = 1;
+        //if (c < 10)
+        //{
+        //    btn.interactable = false;
+        //    //GetComponent<Button>().interactable = false;
+        //    //btn.interactable = false;
+        //}
+        //else
+        //{
+        //    btn.enabled = true;
+        //    //GetComponent<Button>().interactable = true;
+
+        //    //btn.interactable = true;
+        //}
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+         
+        //btn = GetComponent<Button>();
+        // coin = PlayerPrefs.GetInt("Coin");
+        //Debug.Log("Coin" + coin);
+        //gameMoveRequirement = FindObjectOfType<EndGameManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
         gameData = FindObjectOfType<GameData>();
         board = FindObjectOfType<Board>();
+        //ContinueOk();
     }
 
     // Update is called once per frame

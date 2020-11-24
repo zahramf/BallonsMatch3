@@ -17,6 +17,7 @@ TagManager:
   - Breakable
   - Lock
   - GreenDot
+  - btn
   layers:
   - Default
   - TransparentFX
