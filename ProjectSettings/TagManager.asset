@@ -18,6 +18,9 @@ TagManager:
   - Lock
   - GreenDot
   - btn
+  - FullEnergy
+  - energy
+  - goal
   layers:
   - Default
   - TransparentFX

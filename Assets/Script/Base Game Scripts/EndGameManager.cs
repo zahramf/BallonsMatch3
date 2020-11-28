@@ -53,7 +53,7 @@ public class EndGameManager : MonoBehaviour
     }
     }
 
-    void SetupGame()
+  public  void SetupGame()
     {
         currentCounterValue = requirements.counterValue;
         if(requirements.gameType == GameType.Moves)
@@ -108,8 +108,8 @@ public class EndGameManager : MonoBehaviour
         btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
 
 
-        int c = 100;
-        if (c < 10)
+        int coin = PlayerPrefs.GetInt("Coin");
+        if (coin < 900)
         {
             btn.interactable = false;
             //GetComponent<Button>().interactable = false;

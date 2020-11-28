@@ -22,12 +22,15 @@ public class LevelButton : MonoBehaviour
     public int level;
     public GameObject confirmPanel;
     Board board;
+   public BackToSplash backToSplash;
 
 
     GameData gameData;
     // Start is called before the first frame update
     void Start()
     {
+        backToSplash = FindObjectOfType<BackToSplash>();
+
         gameData = FindObjectOfType<GameData>();
         buttonImage = GetComponent<Image>();
         myButton = GetComponent<Button>();
@@ -99,11 +102,33 @@ public class LevelButton : MonoBehaviour
         
     }
 
-   public void ConfirmPanel(int level)
+    public void LoseConfirmPanel(int level)
+    {
+        //if (isActive)
+        //{
+            //Debug.Log("/*Conlevel*/" + level);
+            PlayerPrefs.SetInt("OnLevel", level);
+            //backToSplash.GetComponent<BackToSplash>().currentLevel = level;
+            confirmPanel.GetComponent<ConfirmPanel>().level = level;
+
+
+            //confirmPanel.SetActive(true);
+
+
+        //}
+
+    }
+
+    public void ConfirmPanel( int level)
     {
         if (isActive)
         {
+            //Debug.Log("/*Conlevel*/" + level);
+            PlayerPrefs.SetInt("OnLevel", level);
+            //backToSplash.GetComponent<BackToSplash>().currentLevel = level;
             confirmPanel.GetComponent<ConfirmPanel>().level = level;
+
+
             confirmPanel.SetActive(true);
 
 

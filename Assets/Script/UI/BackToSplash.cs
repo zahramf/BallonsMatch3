@@ -20,8 +20,14 @@ public class BackToSplash : MonoBehaviour
     //public int coin;
     public GameObject tryMenu;
     public Button btn;
-   public EndGameManager gameMoveRequirement;
-
+   public EndGameRequirement gameMoveRequirement;
+    public EndGameManager endgame;
+    GoalManager goal;
+    LevelButton levelButton;
+    ConfirmPanel confirmPAnel;
+    public int currentLevel;
+    World world;
+    Manager manager;
     public void WinOk()
     {
         if (gameData != null)
@@ -42,6 +48,7 @@ public class BackToSplash : MonoBehaviour
             gameData.saveData.stars[board.level] = starLevel;
             
             PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") + 50);
+            PlayerPrefs.SetInt("First", 1);
             
 
         }
@@ -73,38 +80,68 @@ public class BackToSplash : MonoBehaviour
 
     }
 
-    public void ContinueOk()
+    public void LooseOk()
     {
         btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
         if (btn.interactable = true)
         {
             tryMenu.SetActive(false);
-        }
-        //int c = 1;
-        //if (c < 10)
-        //{
-        //    btn.interactable = false;
-        //    //GetComponent<Button>().interactable = false;
-        //    //btn.interactable = false;
-        //}
-        //else
-        //{
-        //    btn.enabled = true;
-        //    //GetComponent<Button>().interactable = true;
+            int  totalEnergy = PlayerPrefs.GetInt("totalEnergy");
+            Debug.Log("E1" + totalEnergy);
+            totalEnergy--;
+            PlayerPrefs.SetInt("totalEnergy", totalEnergy);
+            int lvl = PlayerPrefs.GetInt("OnLevel");
+            Debug.Log("onlevel" + lvl);
+            board.LoseEnergy();
+            endgame.SetupGame();
+            goal.SetGoal();
+            //endgame.SetupGame();
+            //confirmPAnel.GetComponent<ConfirmPanel>().level = lvl;
 
-        //    //btn.interactable = true;
-        //}
+            //levelButton.LoseConfirmPanel(lvl);
+            //confirmPAnel.Play();
+            //confirmPanel.GetComponent<ConfirmPanel>().level = lvl;
+            //world.; levels[lvl];
+
+            //manager.UseEnergyMethod();
+            //tryMenu.SetActive(false);
+            //int loseCoin = PlayerPrefs.GetInt("Coin");
+            //loseCoin -= 900;
+            //PlayerPrefs.SetInt("Coin", loseCoin);
+            //board.LoseManager();
+            //endgame.SetupGame();
+
+        }
+
+
+    }
+
+    public void ContinueOk()
+    {
+        btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
+        if (btn.interactable = true)
+        {
+           
+            tryMenu.SetActive(false);
+           int loseCoin= PlayerPrefs.GetInt("Coin");
+            loseCoin -= 900;
+            PlayerPrefs.SetInt("Coin", loseCoin);
+            board.LoseManager();
+            endgame.SetupGame();
+           
+        }
+      
 
     }
 
     // Start is called before the first frame update
     void Start()
     {
-         
-        //btn = GetComponent<Button>();
-        // coin = PlayerPrefs.GetInt("Coin");
-        //Debug.Log("Coin" + coin);
-        //gameMoveRequirement = FindObjectOfType<EndGameManager>();
+        goal = FindObjectOfType<GoalManager>();
+        manager = FindObjectOfType<Manager>();
+        levelButton = FindObjectOfType<LevelButton>();
+        confirmPAnel = FindObjectOfType<ConfirmPanel>();
+        endgame = FindObjectOfType<EndGameManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
         gameData = FindObjectOfType<GameData>();
         board = FindObjectOfType<Board>();

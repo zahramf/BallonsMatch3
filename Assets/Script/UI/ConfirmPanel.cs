@@ -24,6 +24,7 @@ public class ConfirmPanel : MonoBehaviour
     void OnEnable()
     {
         gameData = FindObjectOfType<GameData>();
+        Debug.Log("Confirmlevel" + level);
         //LoadData();
         //ActiveStars();
         //SetText();
@@ -73,6 +74,7 @@ public class ConfirmPanel : MonoBehaviour
        PlayerPrefs.SetInt("Current Level", level-1);
         //int tooop = PlayerPrefs.GetInt("TopLevel");
         //Debug.Log("toooooooooooooooooooooop" + tooop);
+        //Debug.Log("Level" + level);
 
         SceneManager.LoadScene(levelToLoad);
     }

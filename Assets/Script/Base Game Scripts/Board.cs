@@ -49,6 +49,13 @@ public class Board : MonoBehaviour
     public int height;
     public int offSet;
 
+    public GameType gameType;
+    public int counterValue;
+
+
+  
+    public BlankGoal[] levelGoals;
+
     [Header("Prefabs")]
     public GameObject tilePrefab;
     public GameObject breakableTilePrefab;
@@ -70,6 +77,8 @@ public class Board : MonoBehaviour
     ScoreManager scoreManager;
     SoundManager soundManager;
     GoalManager goalMAnager;
+    EndGameRequirement endGame;
+    BlankGoal[] goalLevel;
     public float refillDelay = 0.5f;
     public int[] scoreGoals;
     bool makeSlime = true;
@@ -104,10 +113,14 @@ public class Board : MonoBehaviour
                     gamePieces = world.levels[level].gamePieces;
                     scoreGoals = world.levels[level].scoreGoals;
                     boardLayout = world.levels[level].boardLayout;
+                    gameType = world.levels[level].endGameReqirements.gameType;
+                    counterValue = world.levels[level].endGameReqirements.counterValue;
+                    levelGoals = world.levels[level].levelGoals;
                 }
             }
         }
-            
+
+       
 
         //}
     }
@@ -148,6 +161,7 @@ public class Board : MonoBehaviour
         goalMAnager = FindObjectOfType<GoalManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
         findMatches = FindObjectOfType<FindMatches>();
+        //endGame = FindObjectOfType<EndGameRequirement>();
         blankSpaces = new bool[width, height];
         breakableTiles = new BackgroundTile[width, height];
         lockTiles = new BackgroundTile[width, height];
@@ -157,8 +171,38 @@ public class Board : MonoBehaviour
         allDots = new GameObject[width, height];
         SetUp();
         currentState = GameState.pause;
+        
+    }
+    public void LoseManager()
+    {
+        int lvl = PlayerPrefs.GetInt("OnLevel");
+        Debug.Log("onlevel" + lvl);
+        world.levels[lvl - 1].endGameReqirements.counterValue = 5;
+        Debug.Log("counter" + world.levels[lvl - 1].endGameReqirements.counterValue);
     }
 
+    public void LoseEnergy()
+    {
+        Debug.Log("Eeeeeeeeeeeeee");
+        int lvl = PlayerPrefs.GetInt("OnLevel");
+        Debug.Log("onlevel" + lvl);
+        width = world.levels[lvl-1].width;
+        Debug.Log("width" + world.levels[lvl - 1].width);
+        height = world.levels[lvl-1].height;
+        gamePieces = world.levels[lvl-1].gamePieces;
+        scoreGoals = world.levels[lvl-1].scoreGoals;
+        Debug.Log("scoreGoals" + world.levels[lvl - 1].scoreGoals);
+
+        boardLayout = world.levels[lvl-1].boardLayout;
+        gameType = world.levels[lvl-1].endGameReqirements.gameType;
+
+        counterValue = world.levels[lvl - 1].endGameReqirements.counterValue;
+        world.levels[lvl - 1].endGameReqirements.counterValue = counterValue;
+        levelGoals = world.levels[lvl-1].levelGoals;
+        goalMAnager.UpdateGoals();
+
+        
+    }
     public void GenerateBlankSpaces()
     {
         for (int i = 0; i < boardLayout.Length; i++)
@@ -846,7 +890,8 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                if (allDots[i, j] == null && !blankSpaces[i, j] && !concreteTiles[i,j] && !slimeTiles[i,j])
+                //if (allDots[i, j] == null && !blankSpaces[i, j] && !concreteTiles[i, j] && !slimeTiles[i, j])
+                    if (allDots[i, j] == null && !blankSpaces[i, j])
                 {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, gamePieces.Length);

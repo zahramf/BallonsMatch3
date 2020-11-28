@@ -25,6 +25,7 @@ public class GoalManager : MonoBehaviour
     public GameObject goalIntroParent;
     public GameObject goalGameParent;
     ScoreManager scoreManager;
+    public GameObject gameGoal;
 
     //GameData gameData;
     Board board;
@@ -61,9 +62,33 @@ public class GoalManager : MonoBehaviour
         }
     }
 
+    public void SetGoal()
+    {
+        GameObject[] goal;
+        
+        for(int j = 0; j < levelGoals.Length; j++)
+        {
+            goal = GameObject.FindGameObjectsWithTag("goal");
+            Destroy(goal[j]);
+        }
+        
+        for (int i = 0; i < levelGoals.Length; i++)
+        {
 
 
-    void SetupGoals()
+            //Create a new goalPanel at the goalGamePanel position
+            gameGoal = Instantiate(goalPrefab, goalGameParent.transform.position, Quaternion.identity);
+            gameGoal.transform.SetParent(goalGameParent.transform);
+            GoalPanel panel = gameGoal.GetComponent<GoalPanel>();
+            panel = gameGoal.GetComponent<GoalPanel>();
+            currentGoals.Add(panel);
+            panel.thisSprite = levelGoals[i].goalSprite;
+            panel.thisString = "0/" + levelGoals[i].numberNeeded;
+        }
+    }
+
+
+  public  void SetupGoals()
     {
         for(int i = 0; i < levelGoals.Length; i++)
         {
@@ -78,7 +103,7 @@ public class GoalManager : MonoBehaviour
 
 
             //Create a new goalPanel at the goalGamePanel position
-            GameObject gameGoal = Instantiate(goalPrefab, goalGameParent.transform.position, Quaternion.identity);
+            gameGoal = Instantiate(goalPrefab, goalGameParent.transform.position, Quaternion.identity);
             gameGoal.transform.SetParent(goalGameParent.transform);
              panel = gameGoal.GetComponent<GoalPanel>();
             currentGoals.Add(panel);

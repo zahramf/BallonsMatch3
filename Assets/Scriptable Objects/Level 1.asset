@@ -27,6 +27,6 @@ MonoBehaviour:
     counterValue: 1
   levelGoals:
   - numberNeeded: 8
-    numberCollected: 0
+    numberCollected: 6
     goalSprite: {fileID: 21300000, guid: ab3f5ecbd3b281d45b24f0f11cd21563, type: 3}
     matchValue: BlueDot
