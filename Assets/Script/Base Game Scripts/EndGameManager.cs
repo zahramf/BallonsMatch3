@@ -80,32 +80,37 @@ public class EndGameManager : MonoBehaviour
 
             if (currentCounterValue <= 0)
             {
-
-                LoseGame();
+                StartCoroutine(LoseGame());
+                //LoseGame();
             }
         }
     }
 
-    public void WinGame()
+    public IEnumerator WinGame()
     {
         //coin += 10;
-       
-        YouWinPanel.SetActive(true);
-      
         board.currentState = GameState.win;
+        YouWinPanel.SetActive(true);
+        
         //coin += 10;
         //Debug.Log("coin" + coin);
         currentCounterValue = 0;
         counter.text = "" + currentCounterValue;
         FadePanelController fade = FindObjectOfType<FadePanelController>();
         fade.GameOver();
+        yield return new WaitForSeconds(1f);
+
+        PlayerPrefs.SetInt("panel", 1);
+
 
     }
 
-    public void LoseGame()
+    public IEnumerator LoseGame()
     {
+        board.currentState = GameState.lose;
         TryAgainPanel.SetActive(true);
         btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
+        Button eBtn= GameObject.FindGameObjectWithTag("btne").GetComponent<Button>();
 
 
         int coin = PlayerPrefs.GetInt("Coin");
@@ -122,15 +127,31 @@ public class EndGameManager : MonoBehaviour
 
             //btn.interactable = true;
         }
-        board.currentState = GameState.lose;
+        int energy = PlayerPrefs.GetInt("totalEnergy");
+        if (energy <= 0)
+        {
+            eBtn.interactable = false;
+            //GetComponent<Button>().interactable = false;
+            //btn.interactable = false;
+        }
+        else
+        {
+            eBtn.enabled = true;
+            //GetComponent<Button>().interactable = true;
+
+            //btn.interactable = true;
+        }
+        
         Debug.Log("You Lose");
         currentCounterValue = 0;
         counter.text = "" + currentCounterValue;
         FadePanelController fade = FindObjectOfType<FadePanelController>();
         fade.GameOver();
+        yield return new WaitForSeconds(1f);
+        PlayerPrefs.SetInt("panel", 1);
 
     }
-    
+
 
     // Update is called once per frame
     void Update()

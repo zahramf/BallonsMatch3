@@ -12,15 +12,16 @@ public class Manager : MonoBehaviour
 
     public Text coinText;
     GameData gameData;
-    public int coin =1000;
+    public int coin =60;
+    int firstEnergy = 0;
     //int coint=1000;
     BackToSplash backSplash;
 
     [SerializeField]
-    Text textEnergy;
+  public  Text textEnergy;
 
     [SerializeField]
-    Text textTimer;
+  public  Text textTimer;
 
     [SerializeField]
     int maxEnergy;
@@ -28,7 +29,7 @@ public class Manager : MonoBehaviour
     int totalEnergy;
     DateTime nextEnergyTime;
     DateTime lastAddedTime;
-    int restoreDuration = 50; //10 second for testing puspose
+    int restoreDuration = 29; //10 second for testing puspose
 
     bool restoring = false;
 
@@ -42,14 +43,22 @@ public class Manager : MonoBehaviour
         gameData = FindObjectOfType<GameData>();
         backSplash = FindObjectOfType<BackToSplash>();
 
-      
-        //Debug.Log("coinManager" + coint);
 
-         coin = PlayerPrefs.GetInt("Coin");
+        //Debug.Log("coinManager" + coint);
+      int  tutal = PlayerPrefs.GetInt("totalEnergy");
+         firstEnergy = PlayerPrefs.GetInt("firstEnergy");
+        if (tutal==0 && firstEnergy ==0)
+        {
+            textEnergy.text = "" + 5;
+            textTimer.text = "ﻞﻣﺎﮐ";
+            PlayerPrefs.SetInt("totalEnergy", 5);
+        }
+        coin = PlayerPrefs.GetInt("Coin");
         int firstCoin = PlayerPrefs.GetInt("First");
         if(coin == 0 && firstCoin != 1)
         {
             coinText.text = "" + 1000;
+            PlayerPrefs.SetInt("Coin", 1000);
         }
         else
         {
@@ -81,6 +90,7 @@ public class Manager : MonoBehaviour
                 {
                     isAdding = true;
                     totalEnergy++;
+                    PlayerPrefs.SetInt("totalEnergy", totalEnergy);
                     DateTime timeToAdd = lastAddedTime > counter ? lastAddedTime : counter;
                     counter = AddDuration(timeToAdd, restoreDuration);
                 }
@@ -98,6 +108,7 @@ public class Manager : MonoBehaviour
             UpdateTimer();
             UpdateEnergy();
             Save();
+            //yield return WaitForSeconds();
             yield return null;
         }
         restoring = false;
@@ -110,8 +121,9 @@ public class Manager : MonoBehaviour
             textTimer.text = "ﻞﻣﺎﮐ";
             return;
         }
+       
         TimeSpan t = nextEnergyTime - DateTime.Now;
-        string value = String.Format("{0:00}:{1:00}", t.TotalMinutes, t.TotalSeconds);
+        string value = String.Format("{0:00}:{1:00}", t.TotalSeconds/60, t.TotalSeconds%60);
         textTimer.text = value;
     }
 
@@ -122,9 +134,9 @@ public class Manager : MonoBehaviour
 
     DateTime AddDuration(DateTime time, int duration)
     {
-        //return time.AddMinutes(duration);
+        return time.AddMinutes(duration);
 
-        return time.AddSeconds(duration);
+        //return time.AddSeconds(duration);
     }
 
     public void UseEnergyMethod()
@@ -141,6 +153,7 @@ public class Manager : MonoBehaviour
             {
                 //if energy is full just now
                 nextEnergyTime = AddDuration(DateTime.Now, restoreDuration);
+                Debug.Log("NextTime" + nextEnergyTime);
             }
             StartCoroutine(RestoreRoutine());
         }
@@ -151,6 +164,7 @@ public class Manager : MonoBehaviour
 
             return;
         totalEnergy=5;
+        PlayerPrefs.SetInt("totalEnergy", totalEnergy);
         UpdateEnergy();
 
         if (!restoring)
@@ -196,19 +210,20 @@ public class Manager : MonoBehaviour
     {
         getEnergy.SetActive(true);
 
-        Button btn = GameObject.FindGameObjectWithTag("FullEnergy").GetComponent<Button>();
+        Button enbtn = GameObject.FindGameObjectWithTag("FullEnergy").GetComponent<Button>();
 
-
-        int coinEnergy = PlayerPrefs.GetInt("Coin");
+        int coin= PlayerPrefs.GetInt("Coin");
+        int energy = PlayerPrefs.GetInt("totalEnergy");
+        Debug.Log("eeeeeeeeeeee" + energy);
           if (coin < 900)
             {
-                btn.interactable = false;
+                enbtn.interactable = false;
                 //GetComponent<Button>().interactable = false;
                 //btn.interactable = false;
             }
             else
             {
-                btn.enabled = true;
+                enbtn.enabled = true;
                 //GetComponent<Button>().interactable = true;
 
                 //btn.interactable = true;
@@ -228,6 +243,7 @@ public class Manager : MonoBehaviour
     void Loade()
     {
         totalEnergy = PlayerPrefs.GetInt("totalEnergy");
+        Debug.Log("E" + totalEnergy);
         nextEnergyTime = StringToDate(PlayerPrefs.GetString("nextEnergyTime"));
         lastAddedTime = StringToDate(PlayerPrefs.GetString("lastAddedTime"));
 

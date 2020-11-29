@@ -78,6 +78,7 @@ public class Board : MonoBehaviour
     SoundManager soundManager;
     GoalManager goalMAnager;
     EndGameRequirement endGame;
+    EndGameManager endGameManager;
     BlankGoal[] goalLevel;
     public float refillDelay = 0.5f;
     public int[] scoreGoals;
@@ -161,6 +162,7 @@ public class Board : MonoBehaviour
         goalMAnager = FindObjectOfType<GoalManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
         findMatches = FindObjectOfType<FindMatches>();
+        endGameManager = FindObjectOfType<EndGameManager>();
         //endGame = FindObjectOfType<EndGameRequirement>();
         blankSpaces = new bool[width, height];
         breakableTiles = new BackgroundTile[width, height];
@@ -790,10 +792,13 @@ public class Board : MonoBehaviour
                 goalMAnager.UpdateGoals();
             }
             //Does the sound manager exit?
-            if(soundManager != null)
+            int panel = PlayerPrefs.GetInt("panel");
+            if (panel !=1 && soundManager != null)
             {
-                soundManager.PlayRandomDestroyNoise();
+                    soundManager.PlayRandomDestroyNoise();
+                
             }
+           
             GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .5f);
             Destroy(allDots[column, row]);
@@ -890,8 +895,8 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                //if (allDots[i, j] == null && !blankSpaces[i, j] && !concreteTiles[i, j] && !slimeTiles[i, j])
-                    if (allDots[i, j] == null && !blankSpaces[i, j])
+                if (allDots[i, j] == null && !blankSpaces[i, j] && !concreteTiles[i, j] && !slimeTiles[i, j])
+                    //if (allDots[i, j] == null && !blankSpaces[i, j])
                 {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, gamePieces.Length);

@@ -21,6 +21,7 @@ TagManager:
   - FullEnergy
   - energy
   - goal
+  - btne
   layers:
   - Default
   - TransparentFX

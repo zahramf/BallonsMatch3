@@ -26,6 +26,7 @@ public class GoalManager : MonoBehaviour
     public GameObject goalGameParent;
     ScoreManager scoreManager;
     public GameObject gameGoal;
+    //public GoalPanel panel;
 
     //GameData gameData;
     Board board;
@@ -34,6 +35,7 @@ public class GoalManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+         //panel = FindObjectOfType<GoalPanel>();
         board = FindObjectOfType<Board>();
         endGame = FindObjectOfType<EndGameManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
@@ -70,6 +72,8 @@ public class GoalManager : MonoBehaviour
         {
             goal = GameObject.FindGameObjectsWithTag("goal");
             Destroy(goal[j]);
+            //Destroy(levelGoals[j].goalSprite);
+            currentGoals.Clear();
         }
         
         for (int i = 0; i < levelGoals.Length; i++)
@@ -84,6 +88,8 @@ public class GoalManager : MonoBehaviour
             currentGoals.Add(panel);
             panel.thisSprite = levelGoals[i].goalSprite;
             panel.thisString = "0/" + levelGoals[i].numberNeeded;
+            levelGoals[i].numberCollected = 0;
+
         }
     }
 
@@ -99,16 +105,16 @@ public class GoalManager : MonoBehaviour
             //Set Image and text of the goal
             GoalPanel panel = goal.GetComponent<GoalPanel>();
             panel.thisSprite = levelGoals[i].goalSprite;
-            panel.thisString = "0/"+ levelGoals[i].numberNeeded;
+            panel.thisString = ""+ levelGoals[i].numberNeeded;
 
 
             //Create a new goalPanel at the goalGamePanel position
             gameGoal = Instantiate(goalPrefab, goalGameParent.transform.position, Quaternion.identity);
             gameGoal.transform.SetParent(goalGameParent.transform);
-             panel = gameGoal.GetComponent<GoalPanel>();
-            currentGoals.Add(panel);
-            panel.thisSprite = levelGoals[i].goalSprite;
-            panel.thisString = "0/" + levelGoals[i].numberNeeded;
+          GoalPanel  panel2 = gameGoal.GetComponent<GoalPanel>();
+            currentGoals.Add(panel2);
+            panel2.thisSprite = levelGoals[i].goalSprite;
+            panel2.thisString = "0/" + levelGoals[i].numberNeeded;
         }
     }
 
@@ -118,7 +124,7 @@ public class GoalManager : MonoBehaviour
         for(int i = 0; i < levelGoals.Length; i++)
         {
             currentGoals[i].thisText.text = "" + levelGoals[i].numberCollected + "/" + levelGoals[i].numberNeeded;
-            if(levelGoals[i].numberCollected >= levelGoals[i].numberNeeded)
+            if (levelGoals[i].numberCollected >= levelGoals[i].numberNeeded)
             {
                 goalsCompleted++;
                 currentGoals[i].thisText.text = "" + levelGoals[i].numberNeeded + "/" + levelGoals[i].numberNeeded;
@@ -135,8 +141,8 @@ public class GoalManager : MonoBehaviour
                     stars[i].SetActive(true);
                 }
                 //gameData.saveData.stars[board.level] = numberOfStar;
-
-                endGame.WinGame();
+                StartCoroutine(endGame.WinGame());
+                //endGame.WinGame();
               
 
                 //gameData.Save();

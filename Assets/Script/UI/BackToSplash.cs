@@ -60,6 +60,7 @@ public class BackToSplash : MonoBehaviour
 
     public void LoseOk()
     {
+        PlayerPrefs.SetInt("panel", 0);
         if (gameData != null)
         {
             gameData.saveData.isActive[board.level] = true;
@@ -82,13 +83,19 @@ public class BackToSplash : MonoBehaviour
 
     public void LooseOk()
     {
-        btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
+        btn = GameObject.FindGameObjectWithTag("btne").GetComponent<Button>();
         if (btn.interactable = true)
         {
+            int energy = PlayerPrefs.GetInt("totalEnergy");
+            
+            energy -= 1;
+            PlayerPrefs.SetInt("totalEnergy", energy);
             tryMenu.SetActive(false);
+            PlayerPrefs.SetInt("panel", 0);
             int  totalEnergy = PlayerPrefs.GetInt("totalEnergy");
             Debug.Log("E1" + totalEnergy);
-            totalEnergy--;
+            //totalEnergy--;
+            PlayerPrefs.SetInt("firstEnergy", 1);
             PlayerPrefs.SetInt("totalEnergy", totalEnergy);
             int lvl = PlayerPrefs.GetInt("OnLevel");
             Debug.Log("onlevel" + lvl);
@@ -123,7 +130,8 @@ public class BackToSplash : MonoBehaviour
         {
            
             tryMenu.SetActive(false);
-           int loseCoin= PlayerPrefs.GetInt("Coin");
+            PlayerPrefs.SetInt("panel", 0);
+            int loseCoin= PlayerPrefs.GetInt("Coin");
             loseCoin -= 900;
             PlayerPrefs.SetInt("Coin", loseCoin);
             board.LoseManager();
