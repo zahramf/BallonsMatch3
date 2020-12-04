@@ -28,11 +28,13 @@ public class BackToSplash : MonoBehaviour
     public int currentLevel;
     World world;
     Manager manager;
+    SoundManager soundManager;
     public void WinOk()
     {
+        PlayerPrefs.SetInt("winpanel", 0);
+
         if (gameData != null)
         {
-           
             int doneLevel = board.level;
             topLevel = board.level + 1;
 
@@ -52,7 +54,8 @@ public class BackToSplash : MonoBehaviour
             
 
         }
-      
+        soundManager.PlayButtonSound();
+
         SceneManager.LoadScene(sceneToLoad);
        
 
@@ -60,6 +63,7 @@ public class BackToSplash : MonoBehaviour
 
     public void LoseOk()
     {
+        PlayerPrefs.SetInt("winpanel", 0);
         PlayerPrefs.SetInt("panel", 0);
         if (gameData != null)
         {
@@ -77,6 +81,8 @@ public class BackToSplash : MonoBehaviour
 
 
         }
+        soundManager.PlayButtonSound();
+
         SceneManager.LoadScene(sceneToLoad);
 
     }
@@ -86,17 +92,21 @@ public class BackToSplash : MonoBehaviour
         btn = GameObject.FindGameObjectWithTag("btne").GetComponent<Button>();
         if (btn.interactable = true)
         {
+            soundManager.PlayButtonSound();
             int energy = PlayerPrefs.GetInt("totalEnergy");
-            
+
             energy -= 1;
+            PlayerPrefs.SetInt("FirstE", 1);
             PlayerPrefs.SetInt("totalEnergy", energy);
+            int e = PlayerPrefs.GetInt("totalEnergy");
+            Debug.Log("Elose" + e);
             tryMenu.SetActive(false);
             PlayerPrefs.SetInt("panel", 0);
-            int  totalEnergy = PlayerPrefs.GetInt("totalEnergy");
-            Debug.Log("E1" + totalEnergy);
+            //int  totalEnergy = PlayerPrefs.GetInt("totalEnergy");
+            //Debug.Log("E1" + totalEnergy);
             //totalEnergy--;
-            PlayerPrefs.SetInt("firstEnergy", 1);
-            PlayerPrefs.SetInt("totalEnergy", totalEnergy);
+            //PlayerPrefs.SetInt("firstEnergy", 1);
+            //PlayerPrefs.SetInt("totalEnergy", totalEnergy);
             int lvl = PlayerPrefs.GetInt("OnLevel");
             Debug.Log("onlevel" + lvl);
             board.LoseEnergy();
@@ -128,7 +138,7 @@ public class BackToSplash : MonoBehaviour
         btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
         if (btn.interactable = true)
         {
-           
+            soundManager.PlayButtonSound();
             tryMenu.SetActive(false);
             PlayerPrefs.SetInt("panel", 0);
             int loseCoin= PlayerPrefs.GetInt("Coin");
@@ -136,15 +146,18 @@ public class BackToSplash : MonoBehaviour
             PlayerPrefs.SetInt("Coin", loseCoin);
             board.LoseManager();
             endgame.SetupGame();
-           
+            PlayerPrefs.SetInt("winpanel", 0);
+
+
         }
-      
+
 
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         goal = FindObjectOfType<GoalManager>();
         manager = FindObjectOfType<Manager>();
         levelButton = FindObjectOfType<LevelButton>();

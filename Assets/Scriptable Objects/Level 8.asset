@@ -13,29 +13,83 @@ MonoBehaviour:
   m_Name: Level 8
   m_EditorClassIdentifier: 
   width: 8
-  height: 6
+  height: 8
   boardLayout:
-  - x: 3
+  - x: 0
+    y: 0
+    tileKind: 1
+  - x: 0
+    y: 1
+    tileKind: 1
+  - x: 0
     y: 2
+    tileKind: 1
+  - x: 0
+    y: 3
+    tileKind: 1
+  - x: 0
+    y: 4
+    tileKind: 1
+  - x: 0
+    y: 5
+    tileKind: 1
+  - x: 0
+    y: 6
+    tileKind: 1
+  - x: 0
+    y: 7
+    tileKind: 1
+  - x: 7
+    y: 0
+    tileKind: 1
+  - x: 7
+    y: 1
+    tileKind: 1
+  - x: 7
+    y: 2
+    tileKind: 1
+  - x: 7
+    y: 3
+    tileKind: 1
+  - x: 7
+    y: 4
+    tileKind: 1
+  - x: 7
+    y: 5
+    tileKind: 1
+  - x: 7
+    y: 6
+    tileKind: 1
+  - x: 7
+    y: 7
+    tileKind: 1
+  - x: 1
+    y: 3
+    tileKind: 1
+  - x: 1
+    y: 4
+    tileKind: 1
+  - x: 6
+    y: 3
+    tileKind: 1
+  - x: 6
+    y: 4
     tileKind: 1
   - x: 3
     y: 3
     tileKind: 1
-  - x: 4
-    y: 2
+  - x: 3
+    y: 4
     tileKind: 1
   - x: 4
     y: 3
     tileKind: 1
-  - x: 3
-    y: 5
-    tileKind: 1
   - x: 4
-    y: 5
+    y: 4
     tileKind: 1
   gamePieces:
   - {fileID: 8585569578225059422, guid: ae11c46aa6ad66e4199d35e5982e26e8, type: 3}
-  - {fileID: 4823393930512964276, guid: 8cbe5b99dfe1f9c4dae255593e3ef845, type: 3}
+  - {fileID: 8535852802761219697, guid: 89e412da1a5692d448b34d5a3eafcfb9, type: 3}
   - {fileID: 8338492191019013582, guid: d2c54f87496ef764da55980453bbecab, type: 3}
   - {fileID: 2839782593335692562, guid: fb3b8130e8604bf409cead9c8adb24e2, type: 3}
   scoreGoals: 64000000c8000000f4010000

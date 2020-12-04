@@ -23,14 +23,16 @@ public class LevelButton : MonoBehaviour
     public GameObject confirmPanel;
     Board board;
    public BackToSplash backToSplash;
-
+    //public AudioSource btnSound;
+    Manager manager;
+    public GameObject Load;
 
     GameData gameData;
     // Start is called before the first frame update
     void Start()
     {
         backToSplash = FindObjectOfType<BackToSplash>();
-
+        manager = FindObjectOfType<Manager>();
         gameData = FindObjectOfType<GameData>();
         buttonImage = GetComponent<Image>();
         myButton = GetComponent<Button>();
@@ -123,6 +125,9 @@ public class LevelButton : MonoBehaviour
     {
         if (isActive)
         {
+            manager.PlaySoundLevel();
+            Load.SetActive(true);
+            //btnSound.Play();
             //Debug.Log("/*Conlevel*/" + level);
             PlayerPrefs.SetInt("OnLevel", level);
             //backToSplash.GetComponent<BackToSplash>().currentLevel = level;

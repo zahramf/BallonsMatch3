@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public  AudioSource buttonSound;
     public AudioSource destroyNoise;
 
     public AudioSource backgroundMusic;
@@ -45,6 +46,11 @@ public class SoundManager : MonoBehaviour
                 backgroundMusic.volume = 1;
             }
         }
+    }
+
+    public void PlayButtonSound()
+    {
+        buttonSound.Play();
     }
 
     public void PlayRandomDestroyNoise()

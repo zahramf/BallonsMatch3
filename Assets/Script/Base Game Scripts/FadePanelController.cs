@@ -7,11 +7,23 @@ public class FadePanelController : MonoBehaviour
 
     public Animator panelAnim;
     public Animator gameInfoAnim;
+    SoundManager soundManager;
+    void Start()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
+    void Play()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
    
     public void Ok()
     {
-        if(panelAnim != null && gameInfoAnim != null)
+        PlayerPrefs.SetInt("winpanel", 0);
+
+        if (panelAnim != null && gameInfoAnim != null)
         {
+            soundManager.PlayButtonSound();
             panelAnim.SetBool("Out", true);
             gameInfoAnim.SetBool("Out", true);
             StartCoroutine(GameStartCo());

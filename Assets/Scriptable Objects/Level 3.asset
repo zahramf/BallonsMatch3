@@ -43,7 +43,8 @@ MonoBehaviour:
   - {fileID: 8535852802761219697, guid: 89e412da1a5692d448b34d5a3eafcfb9, type: 3}
   - {fileID: 4823393930512964276, guid: 8cbe5b99dfe1f9c4dae255593e3ef845, type: 3}
   - {fileID: 8338492191019013582, guid: d2c54f87496ef764da55980453bbecab, type: 3}
-  - {fileID: 2839782593335692562, guid: fb3b8130e8604bf409cead9c8adb24e2, type: 3}
+  - {fileID: 8585569578225059422, guid: ae11c46aa6ad66e4199d35e5982e26e8, type: 3}
+  - {fileID: 8338492191019013582, guid: d2c54f87496ef764da55980453bbecab, type: 3}
   scoreGoals: 64000000c8000000f4010000
   endGameReqirements:
     gameType: 0
@@ -51,9 +52,9 @@ MonoBehaviour:
   levelGoals:
   - numberNeeded: 10
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: ab3f5ecbd3b281d45b24f0f11cd21563, type: 3}
+    goalSprite: {fileID: 21300000, guid: 987a5610b0d0542458779fd170da9d55, type: 3}
     matchValue: BlueDot
   - numberNeeded: 10
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: 9a686633f98d23c4d8a19c2d801c8325, type: 3}
-    matchValue: RedDot
+    goalSprite: {fileID: 21300000, guid: b029a675a3d681b4386e4b326a79605c, type: 3}
+    matchValue: OrangeDot

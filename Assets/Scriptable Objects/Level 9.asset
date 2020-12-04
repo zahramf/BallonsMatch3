@@ -65,8 +65,8 @@ MonoBehaviour:
   levelGoals:
   - numberNeeded: 5
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: 25fa82a8f3a2a054a805b646e03e598b, type: 3}
-    matchValue: PinkDot
+    goalSprite: {fileID: 21300000, guid: 92e7da9d07989c74e911ccef30c0dca3, type: 3}
+    matchValue: GreenDot
   - numberNeeded: 14
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: 8a3811ccec7fb6b46af8dfeceef7b426, type: 3}

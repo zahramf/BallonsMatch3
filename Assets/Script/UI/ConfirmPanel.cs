@@ -18,7 +18,7 @@ public class ConfirmPanel : MonoBehaviour
     public Text highScoreText;
     public Text starText;
 
-
+    public GameObject Load;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -75,7 +75,8 @@ public class ConfirmPanel : MonoBehaviour
         //int tooop = PlayerPrefs.GetInt("TopLevel");
         //Debug.Log("toooooooooooooooooooooop" + tooop);
         //Debug.Log("Level" + level);
-
+        //Load.SetActive(true);
         SceneManager.LoadScene(levelToLoad);
+
     }
 }

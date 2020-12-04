@@ -12,32 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3659e4fa13760c243b8861de36e88c17, type: 3}
   m_Name: Level 13
   m_EditorClassIdentifier: 
-  width: 6
+  width: 8
   height: 8
   boardLayout:
-  - x: 0
-    y: 4
+  - x: 3
+    y: 0
     tileKind: 1
-  - x: 0
-    y: 5
+  - x: 4
+    y: 0
     tileKind: 1
-  - x: 0
-    y: 6
+  - x: 5
+    y: 0
     tileKind: 1
-  - x: 0
+  - x: 3
+    y: 7
+    tileKind: 1
+  - x: 4
     y: 7
     tileKind: 1
   - x: 5
-    y: 4
+    y: 7
+    tileKind: 1
+  - x: 4
+    y: 1
     tileKind: 1
   - x: 5
-    y: 5
+    y: 1
+    tileKind: 1
+  - x: 4
+    y: 6
     tileKind: 1
   - x: 5
     y: 6
     tileKind: 1
   - x: 5
-    y: 7
+    y: 2
+    tileKind: 1
+  - x: 5
+    y: 5
     tileKind: 1
   gamePieces:
   - {fileID: 8585569578225059422, guid: ae11c46aa6ad66e4199d35e5982e26e8, type: 3}
@@ -48,9 +60,9 @@ MonoBehaviour:
   scoreGoals: 64000000c8000000f4010000
   endGameReqirements:
     gameType: 0
-    counterValue: 16
+    counterValue: 30
   levelGoals:
-  - numberNeeded: 35
+  - numberNeeded: 15
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: 25fa82a8f3a2a054a805b646e03e598b, type: 3}
     matchValue: PinkDot
@@ -58,7 +70,7 @@ MonoBehaviour:
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: 8a3811ccec7fb6b46af8dfeceef7b426, type: 3}
     matchValue: YellowDot
-  - numberNeeded: 15
+  - numberNeeded: 35
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: 9a686633f98d23c4d8a19c2d801c8325, type: 3}
     matchValue: RedDot

@@ -9,12 +9,18 @@ public class HintManager : MonoBehaviour
     private float hintDelaySeconds;
     public GameObject hintParticle;
     public GameObject currentHint;
+    public List<GameObject > possible;
+    Animator anim;
+   public GameObject move;
 
     // Start is called before the first frame update
     void Start()
     {
         board = FindObjectOfType<Board>();
+        anim = GetComponent<Animator>();
+
         hintDelaySeconds = hintDelay;
+        List<GameObject> possible = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -31,7 +37,7 @@ public class HintManager : MonoBehaviour
     //First, I want to find all possible matches on the board
     List<GameObject> FindAllMatches()
     {
-        List<GameObject> possibleMoves = new List<GameObject>();
+        //List<GameObject> possibleMoves = new List<GameObject>();
         for (int i = 0; i <board.width; i++)
         {
             for (int j = 0; j < board.height; j++)
@@ -42,7 +48,9 @@ public class HintManager : MonoBehaviour
                     {
                         if (board.SwitchAndCheck(i, j, Vector2.right))
                         {
-                            possibleMoves.Add(board.allDots[i, j]);
+                            //possibleMoves.Add(board.allDots[i, j]);
+                            possible.Add(board.allDots[i, j]);
+
                         }
 
                     }
@@ -50,14 +58,19 @@ public class HintManager : MonoBehaviour
                     {
                         if (board.SwitchAndCheck(i, j, Vector2.up))
                         {
-                            possibleMoves.Add(board.allDots[i, j]);
+                            //possibleMoves.Add(board.allDots[i, j]);
+                            possible.Add(board.allDots[i, j]);
+
 
                         }
                     }
                 }
             }
         }
-        return possibleMoves;
+        //return possibleMoves;
+        return possible;
+
+
     }
     //Pick one of those matches randomly
 
@@ -72,20 +85,27 @@ public class HintManager : MonoBehaviour
         }
         return null;
     }
+
+   
     //Create the hint behind the chosen match
     private void MarkHint()
     {
-        GameObject move = PickOneRandomly();
+         move = PickOneRandomly();
+
+        //GameObject move = PickOneRandomly();
         if (move != null)
         {
+            move.GetComponent<Dot>().HintAnim();
             currentHint = Instantiate(hintParticle, move.transform.position, Quaternion.identity);
         }
     }
     //Destroy the hint
-    public void DestroyHint()
+    public IEnumerator DestroyHint()
     {
         if (currentHint != null)
         {
+            yield return new WaitForSeconds(1f);
+            move.GetComponent<Dot>().DestroyHintAnim();
             Destroy(currentHint);
             currentHint = null;
             hintDelaySeconds = hintDelay;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
+
 public class Manager : MonoBehaviour
 {
     public GameObject buyMenu;
@@ -13,7 +14,7 @@ public class Manager : MonoBehaviour
     public Text coinText;
     GameData gameData;
     public int coin =60;
-    int firstEnergy = 0;
+    //int firstEnergy = 0;
     //int coint=1000;
     BackToSplash backSplash;
 
@@ -26,16 +27,19 @@ public class Manager : MonoBehaviour
     [SerializeField]
     int maxEnergy;
 
-    int totalEnergy;
+   public int totalEnergy=0;
     DateTime nextEnergyTime;
     DateTime lastAddedTime;
     int restoreDuration = 29; //10 second for testing puspose
 
     bool restoring = false;
+    public AudioSource btnSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+
         Loade();
 
         StartCoroutine(RestoreRoutine());
@@ -43,15 +47,23 @@ public class Manager : MonoBehaviour
         gameData = FindObjectOfType<GameData>();
         backSplash = FindObjectOfType<BackToSplash>();
 
-
+        //UpdateEnergy();
         //Debug.Log("coinManager" + coint);
-      int  tutal = PlayerPrefs.GetInt("totalEnergy");
-         firstEnergy = PlayerPrefs.GetInt("firstEnergy");
-        if (tutal==0 && firstEnergy ==0)
+        int tutal = PlayerPrefs.GetInt("totalEnergy");
+       int firstEnergy = PlayerPrefs.GetInt("FirstE");
+        if (tutal == 0 && firstEnergy != 1)
         {
-            textEnergy.text = "" + 5;
-            textTimer.text = "ﻞﻣﺎﮐ";
+
             PlayerPrefs.SetInt("totalEnergy", 5);
+            Loade();
+
+            //StartCoroutine(RestoreRoutine());
+        }
+        else
+        {
+            Loade();
+
+            StartCoroutine(RestoreRoutine());
         }
         coin = PlayerPrefs.GetInt("Coin");
         int firstCoin = PlayerPrefs.GetInt("First");
@@ -90,7 +102,7 @@ public class Manager : MonoBehaviour
                 {
                     isAdding = true;
                     totalEnergy++;
-                    PlayerPrefs.SetInt("totalEnergy", totalEnergy);
+                    //PlayerPrefs.SetInt("totalEnergy", totalEnergy);
                     DateTime timeToAdd = lastAddedTime > counter ? lastAddedTime : counter;
                     counter = AddDuration(timeToAdd, restoreDuration);
                 }
@@ -141,9 +153,9 @@ public class Manager : MonoBehaviour
 
     public void UseEnergyMethod()
     {
-        //if (totalEnergy == 0)
+        if (totalEnergy == 0)
 
-        //    return;
+            return;
         totalEnergy--;
         UpdateEnergy();
 
@@ -204,32 +216,33 @@ public class Manager : MonoBehaviour
 
     public void Buy()
     {
+
         buyMenu.SetActive(true);
     }
+
+
+
     public void Energy()
     {
         getEnergy.SetActive(true);
 
         Button enbtn = GameObject.FindGameObjectWithTag("FullEnergy").GetComponent<Button>();
 
-        int coin= PlayerPrefs.GetInt("Coin");
+        int coin = PlayerPrefs.GetInt("Coin");
         int energy = PlayerPrefs.GetInt("totalEnergy");
         Debug.Log("eeeeeeeeeeee" + energy);
-          if (coin < 900)
-            {
-                enbtn.interactable = false;
-                //GetComponent<Button>().interactable = false;
-                //btn.interactable = false;
-            }
-            else
-            {
-                enbtn.enabled = true;
-                //GetComponent<Button>().interactable = true;
+        if (coin < 900)
+        {
+            enbtn.interactable = false;
 
-                //btn.interactable = true;
-            }
-        
-       
+        }
+        else
+        {
+            enbtn.enabled = true;
+
+        }
+
+
     }
     public void CloseBuyBtn()
     {
@@ -264,4 +277,8 @@ public class Manager : MonoBehaviour
         return DateTime.Parse(date);
       
     } 
+    public void PlaySoundLevel()
+    {
+        btnSound.Play();
+    }
 }

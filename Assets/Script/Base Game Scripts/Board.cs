@@ -80,7 +80,7 @@ public class Board : MonoBehaviour
     EndGameRequirement endGame;
     EndGameManager endGameManager;
     BlankGoal[] goalLevel;
-    public float refillDelay = 0.5f;
+    public float refillDelay = 0.001f;
     public int[] scoreGoals;
     bool makeSlime = true;
 
@@ -798,16 +798,17 @@ public class Board : MonoBehaviour
                     soundManager.PlayRandomDestroyNoise();
                 
             }
-           
+
             GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .5f);
-            Destroy(allDots[column, row]);
+            allDots[column, row].GetComponent<Dot>().PopAnim();
+            Destroy(allDots[column, row],.5f);
             scoreManager.IncreaseScore(basePieceValue * streakValue);
             allDots[column, row] = null;
         }
     }
 
-    public void DestroyMatches()
+    public IEnumerator DestroyMatches()
     {
         //how many elements are in matched pieces list from find matched?
         if (findMatches.currentMatches.Count >= 4)
@@ -824,10 +825,12 @@ public class Board : MonoBehaviour
             {
                 if (allDots[i, j] != null)
                 {
+                    
                     DestroyMatchesAt(i, j);
                 }
             }
         }
+        yield return new WaitForSeconds(.4f);
         StartCoroutine(DecreaseRowCo2());
        
     }
@@ -860,8 +863,10 @@ public class Board : MonoBehaviour
 
             }
         }
+        yield return new WaitForSeconds(refillDelay);
 
-        yield return new WaitForSeconds(refillDelay * 0.5f);
+
+        //yield return new WaitForSeconds(refillDelay * 0.5f);
         Debug.Log("Refilling the board");
 
         StartCoroutine(FillBoardCo());
@@ -879,13 +884,18 @@ public class Board : MonoBehaviour
                 }
                 else if (nullCount > 0)
                 {
+                    ///
+                    //yield return new WaitForSeconds(refillDelay * 1f);
+
                     allDots[i, j].GetComponent<Dot>().row -= nullCount;
                     allDots[i, j] = null;
                 }
             }
             nullCount = 0;
         }
-        yield return new WaitForSeconds(refillDelay * 0.5f);
+        yield return new WaitForSeconds(refillDelay);
+
+        //yield return new WaitForSeconds(refillDelay * 0.5f);
         StartCoroutine(FillBoardCo());
     }
 
@@ -940,17 +950,19 @@ public class Board : MonoBehaviour
 
     private IEnumerator FillBoardCo()
     {
-        yield return new WaitForSeconds(refillDelay);
+        //yield return new WaitForSeconds(refillDelay);
         RefillBoard();
         yield return new WaitForSeconds(refillDelay);
 
         while (MatchesOnBoard())
         {
             streakValue++;
-            DestroyMatches();
+            //yield return new WaitForSeconds(1f);
+            StartCoroutine(DestroyMatches());
+            //DestroyMatches();
 
             yield break;
-            //yield return new WaitForSeconds(2 * refillDelay);
+            //yield return new WaitForSeconds( refillDelay);
         }
         currentDot = null;
         CheckToMakeSlime();

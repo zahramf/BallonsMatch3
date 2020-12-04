@@ -17,6 +17,10 @@ public class Dot : MonoBehaviour
     public bool isMatched = false;
     public GameObject otherDot;
 
+    Animator anim;
+    float shineDelay;
+    float shineDelaySeconds;
+
     EndGameManager endGameManager;
     HintManager hintManager;
     FindMatches findMatches;
@@ -48,6 +52,11 @@ public class Dot : MonoBehaviour
         isRowBomb = false;
         isColorBomb = false;
         isAdjacentBomb = false;
+        shineDelay = Random.Range(3f, 6f);
+        shineDelaySeconds = shineDelay;
+
+        anim = GetComponent<Animator>();
+
         endGameManager = FindObjectOfType<EndGameManager>();
         hintManager = FindObjectOfType<HintManager>();
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
@@ -93,6 +102,21 @@ public class Dot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
+
+
+        shineDelaySeconds -= Time.deltaTime;
+        if(shineDelaySeconds <= 0)
+        {
+            shineDelaySeconds = shineDelay;
+            StartCoroutine(StartShineCo());
+        }
+        if (hintManager != null)
+        {
+            StartCoroutine(hintManager.DestroyHint());
+
+        }
+        //StartCoroutine(DestroyHintCo());
         //isMatched = true;
         /*
         //FindMatches();
@@ -197,7 +221,9 @@ public class Dot : MonoBehaviour
                         endGameManager.DecreaseCounterValue();
                     }
                 }
-                board.DestroyMatches();
+
+               
+                StartCoroutine(board.DestroyMatches()); 
 
             }
             //otherDot = null;
@@ -205,15 +231,68 @@ public class Dot : MonoBehaviour
 
 
     }
+    //IEnumerator DestroyHint()
+    // {
+    //     if (hintManager != null)
+    //     {
+    //         yield return new WaitForSeconds(2f);
+    //         hintManager.DestroyHint();
+    //         //hintManager.move = anim.SetBool("touch", false);
+    //         //anim.SetBool("touch", false);
+
+
+    //     }
+    // }
+    //IEnumerator DestroyHintCo()
+    //{
+    //   bool an= anim.GetBool("touch");
+    //   if (an)
+    //    {
+    //        yield return new WaitForSeconds(4f);
+    //        anim.SetBool("touch", false);
+    //    }
+
+
+    //}
+    IEnumerator StartShineCo()
+    {
+        anim.SetBool("shine", true);
+        yield return null;
+        anim.SetBool("shine", false);
+
+    }
+
+    public void PopAnim()
+    {
+        anim.SetBool("pop", true);
+    }
+    public void HintAnim()
+    {
+        anim.SetBool("touch", true);
+    }
+
+    public void DestroyHintAnim()
+    {
+        anim.SetBool("touch", false);
+    }
+
 
     private void OnMouseDown()
     {
+        //if (anim != null)
+        //{
+        //    anim.SetBool("touch", false);
+        //}
         //Destroy hint
-        if (hintManager != null)
-        {
-            hintManager.DestroyHint();
+        //if (hintManager != null)
+        //{
+            
+        //    hintManager.DestroyHint();
+        //    //hintManager.move = anim.SetBool("touch", false);
+        //    //anim.SetBool("touch", false);
 
-        }
+
+        //}
         if (board.currentState == GameState.move)
         {
             firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -224,6 +303,8 @@ public class Dot : MonoBehaviour
 
     private void OnMouseUp()
     {
+        //anim.SetBool("touch", false);
+
         if (board.currentState == GameState.move)
         {
             finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

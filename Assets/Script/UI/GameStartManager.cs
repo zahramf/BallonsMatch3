@@ -5,16 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameStartManager : MonoBehaviour
 {
+    public  GameObject Load;
+    public AudioSource button;
+    SoundManager soundManager;
     //GameData gameData;
-    public void StartGame()
-    {
-        SceneManager.LoadScene("Splash");
-    }
-    //public GameObject startPanel;
-    //public GameObject levelPanel;
-    //// Start is called before the first frame update
+
     void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+
         //gameData = FindObjectOfType<GameData>();
         //if(gameData != null)
         //{
@@ -25,6 +24,17 @@ public class GameStartManager : MonoBehaviour
         //startPanel.SetActive(true);
         //levelPanel.SetActive(false);
     }
+    public void StartGame()
+    {
+        button.Play();
+        Load.SetActive(true);
+
+        SceneManager.LoadScene("Splash");
+    }
+    //public GameObject startPanel;
+    //public GameObject levelPanel;
+    //// Start is called before the first frame update
+   
 
     //public void PlayGame()
     //{

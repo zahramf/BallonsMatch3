@@ -11,6 +11,8 @@ public class PauseManager : MonoBehaviour
     Board board;
     public bool paused = false;
     public Image musicButton;
+    public Sprite soundOnSprite;
+    public Sprite soundOffSprite;
     public Sprite musicOnSprite;
     public Sprite musicOffSprite;
     SoundManager sound;
@@ -27,16 +29,16 @@ public class PauseManager : MonoBehaviour
         {
             if(PlayerPrefs.GetInt("Sound") == 0)
             {
-                musicButton.sprite = musicOffSprite;
+                musicButton.sprite = soundOffSprite;
             }
             else
             {
-                musicButton.sprite = musicOnSprite;
+                musicButton.sprite = soundOnSprite;
             }
         }
         else
         {
-            musicButton.sprite = musicOnSprite;
+            musicButton.sprite = soundOnSprite;
         }
         pausePanel.SetActive(false);
         board = GameObject.FindWithTag("Board").GetComponent<Board>();

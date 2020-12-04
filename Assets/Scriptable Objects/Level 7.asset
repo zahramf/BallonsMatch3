@@ -37,8 +37,8 @@ MonoBehaviour:
     matchValue: YellowDot
   - numberNeeded: 14
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: b029a675a3d681b4386e4b326a79605c, type: 3}
-    matchValue: OrangeDot
+    goalSprite: {fileID: 21300000, guid: 9a686633f98d23c4d8a19c2d801c8325, type: 3}
+    matchValue: DerDot
   - numberNeeded: 14
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: ab3f5ecbd3b281d45b24f0f11cd21563, type: 3}

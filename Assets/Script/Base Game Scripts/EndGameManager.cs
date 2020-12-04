@@ -30,6 +30,8 @@ public class EndGameManager : MonoBehaviour
     Board board;
     float timerSeconds;
     Button btn;
+    Button eBtn;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +92,9 @@ public class EndGameManager : MonoBehaviour
     {
         //coin += 10;
         board.currentState = GameState.win;
+        yield return new WaitForSeconds(0.8f);
+        PlayerPrefs.SetInt("winpanel", 1);
+
         YouWinPanel.SetActive(true);
         
         //coin += 10;
@@ -107,41 +112,49 @@ public class EndGameManager : MonoBehaviour
 
     public IEnumerator LoseGame()
     {
+        int win = PlayerPrefs.GetInt("winpanel");
         board.currentState = GameState.lose;
-        TryAgainPanel.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
+        if (win != 1)
+
+            TryAgainPanel.SetActive(true);
+
+        //if (win != 1)
+        //{
+        //    TryAgainPanel.SetActive(true);
+        //    Debug.Log("Wiiiiiiiiiiiiiiin" + win);
+
+
+        //}
+
+
         btn = GameObject.FindGameObjectWithTag("btn").GetComponent<Button>();
-        Button eBtn= GameObject.FindGameObjectWithTag("btne").GetComponent<Button>();
+        eBtn = GameObject.FindGameObjectWithTag("btne").GetComponent<Button>();
 
 
         int coin = PlayerPrefs.GetInt("Coin");
         if (coin < 900)
         {
             btn.interactable = false;
-            //GetComponent<Button>().interactable = false;
-            //btn.interactable = false;
+           
         }
         else
         {
             btn.enabled = true;
-            //GetComponent<Button>().interactable = true;
-
-            //btn.interactable = true;
+          
         }
         int energy = PlayerPrefs.GetInt("totalEnergy");
         if (energy <= 0)
         {
             eBtn.interactable = false;
-            //GetComponent<Button>().interactable = false;
-            //btn.interactable = false;
+
         }
         else
         {
             eBtn.enabled = true;
-            //GetComponent<Button>().interactable = true;
 
-            //btn.interactable = true;
         }
-        
+
         Debug.Log("You Lose");
         currentCounterValue = 0;
         counter.text = "" + currentCounterValue;
