@@ -4,35 +4,49 @@ using UnityEngine;
 
 public class SoundScript : MonoBehaviour
 {
-    private static SoundScript instance = null;
-    
-    // Start is called before the first frame update
-    void Start()
+  static  SoundScript Instance;
+    [SerializeField]
+     AudioSource musicSource = null;
+
+
+    public static void Play(AudioClip clip)
     {
-     
-    }
-  
-    public static SoundScript Instance
-    {
-        get { return instance; }
+        if (PlayerPrefs.GetInt("musicGame") == 1)
+        {
+            Debug.Log("play");
+            if (clip == null)
+                Instance.musicSource.Stop();
+            if (Instance.musicSource.clip == clip && Instance.musicSource.isPlaying)
+            {
+                return;
+            }
+            Instance.musicSource.clip = clip;
+
+            Instance.musicSource.Play();
+            Instance.musicSource.volume = 1;
+        }
+        else if (PlayerPrefs.GetInt("musicGame") == 0)
+        {
+            Debug.Log("pause");
+
+            Instance.musicSource.clip = null;
+            Instance.musicSource.Play();
+            Instance.musicSource.volume = 0;
+          
+        }
+       
     }
 
     void Awake()
     {
-        if(instance != null && instance !=this)
+        Debug.Log("awake" + PlayerPrefs.GetInt("musicGame"));
+        if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
-        else
-        {
-            instance = this;
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        Instance = this;
+        DontDestroyOnLoad(Instance.gameObject);
     }
 }

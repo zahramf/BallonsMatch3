@@ -112,5 +112,5 @@ MonoBehaviour:
   levelGoals:
   - numberNeeded: 8
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: 7fe5080c2d7b2384ab2c53bd92eed7f4, type: 3}
+    goalSprite: {fileID: 21300000, guid: 92e7da9d07989c74e911ccef30c0dca3, type: 3}
     matchValue: GreenDot

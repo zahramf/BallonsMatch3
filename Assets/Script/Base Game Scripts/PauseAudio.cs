@@ -7,7 +7,7 @@ public class PauseAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundScript.Instance.gameObject.GetComponent<AudioSource>().Pause();
+        //SoundScript.Instance.gameObject.GetComponent<AudioSource>().Pause();
         //SoundScript.Instance.gameObject.GetComponent<AudioSource>().Pause();
     }
 

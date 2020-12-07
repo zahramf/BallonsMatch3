@@ -14421,7 +14421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.66358656}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.71875, y: 2053.5461}
+  m_AnchoredPosition: {x: 3.71875, y: 2053.5464}
   m_SizeDelta: {x: 10.448944, y: 825.93036}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699402288
@@ -16500,7 +16500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.62518895, y: 0.01624733}
   m_AnchorMax: {x: 0.7596475, y: 0.093342066}
-  m_AnchoredPosition: {x: 2, y: -21.000122}
+  m_AnchoredPosition: {x: 2, y: -21.000061}
   m_SizeDelta: {x: 5.532364, y: 22.158447}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &797412417
@@ -22892,6 +22892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef1b7305c96d844aa502c1b3167d9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splashMusic: {fileID: 8300000, guid: 90c7cc975ba1b414a8e0d5b46e12adae, type: 3}
   buyMenu: {fileID: 1498671479}
   getEnergy: {fileID: 96665404}
   coinText: {fileID: 451521724}

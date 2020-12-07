@@ -52,7 +52,7 @@ MonoBehaviour:
   levelGoals:
   - numberNeeded: 10
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: 987a5610b0d0542458779fd170da9d55, type: 3}
+    goalSprite: {fileID: 21300000, guid: ab3f5ecbd3b281d45b24f0f11cd21563, type: 3}
     matchValue: BlueDot
   - numberNeeded: 10
     numberCollected: 0

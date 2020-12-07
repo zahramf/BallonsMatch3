@@ -62,6 +62,7 @@ public class Dot : MonoBehaviour
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
         //board = FindObjectOfType<Board>();
         findMatches = FindObjectOfType<FindMatches>();
+        StartCoroutine(DestroyHint());
         //targetxX = ()transform.position=row;
         //targetyY = (int)transform.position.y;
         //row = targetY;
@@ -102,45 +103,22 @@ public class Dot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+
 
 
         shineDelaySeconds -= Time.deltaTime;
-        if(shineDelaySeconds <= 0)
+        if (shineDelaySeconds <= 0)
         {
             shineDelaySeconds = shineDelay;
             StartCoroutine(StartShineCo());
         }
-        if (hintManager != null)
-        {
-            StartCoroutine(hintManager.DestroyHint());
-
-        }
-        //StartCoroutine(DestroyHintCo());
-        //isMatched = true;
-        /*
-        //FindMatches();
-        if (isMatched)
-        {
-            SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-            mySprite.color = new Color(0f, 0f, 0f, .2f);
-        }
-        */
-        ////
-        //if (Input.GetMouseButtonDown(0))
+        //if (hintManager != null)
         //{
-        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-
-        //    int posX = targetX;
-        //    Debug.Log("posX" + posX);
-
-        //    int posY = targetY;
-        //    Debug.Log("posY" + posY);
+        //    StartCoroutihintManager.DestroyHint());
 
         //}
+        //StartCoroutine(DestroyHint());
 
-        ///
         targetX = column;
         targetY = row;
         if (Mathf.Abs(targetX - transform.position.x) > .1)
@@ -231,29 +209,24 @@ public class Dot : MonoBehaviour
 
 
     }
-    //IEnumerator DestroyHint()
-    // {
-    //     if (hintManager != null)
-    //     {
-    //         yield return new WaitForSeconds(2f);
-    //         hintManager.DestroyHint();
-    //         //hintManager.move = anim.SetBool("touch", false);
-    //         //anim.SetBool("touch", false);
+    IEnumerator DestroyHint()
+    {
+        while (true)
+        {
+            if (hintManager != null)
+            {
+                yield return new WaitForSeconds(4f);
+
+                hintManager.DestroyHint();
+                //hintManager.move = anim.SetBool("touch", false);
+                //anim.SetBool("touch", false);
 
 
-    //     }
-    // }
-    //IEnumerator DestroyHintCo()
-    //{
-    //   bool an= anim.GetBool("touch");
-    //   if (an)
-    //    {
-    //        yield return new WaitForSeconds(4f);
-    //        anim.SetBool("touch", false);
-    //    }
+            }
+        }
+      
+    }
 
-
-    //}
     IEnumerator StartShineCo()
     {
         anim.SetBool("shine", true);

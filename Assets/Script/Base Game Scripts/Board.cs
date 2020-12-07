@@ -80,7 +80,7 @@ public class Board : MonoBehaviour
     EndGameRequirement endGame;
     EndGameManager endGameManager;
     BlankGoal[] goalLevel;
-    public float refillDelay = 0.001f;
+    public float refillDelay = 0.0000001f;
     public int[] scoreGoals;
     bool makeSlime = true;
 
@@ -830,7 +830,7 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(.3f);
         StartCoroutine(DecreaseRowCo2());
        
     }

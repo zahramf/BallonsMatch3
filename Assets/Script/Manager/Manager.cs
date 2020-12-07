@@ -8,6 +8,11 @@ using System;
 
 public class Manager : MonoBehaviour
 {
+    public AudioClip splashMusic;
+
+    AudioSource backgroundMusic;
+
+
     public GameObject buyMenu;
     public GameObject getEnergy;
 
@@ -38,7 +43,10 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        backgroundMusic = GetComponent<AudioSource>();
+        SoundScript.Play(splashMusic);
+        Debug.Log("Menu" + PlayerPrefs.GetInt("musicGame"));
+
 
         Loade();
 

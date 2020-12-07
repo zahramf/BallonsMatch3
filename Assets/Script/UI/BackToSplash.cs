@@ -32,7 +32,7 @@ public class BackToSplash : MonoBehaviour
     public void WinOk()
     {
         PlayerPrefs.SetInt("winpanel", 0);
-
+        PlayerPrefs.SetInt("panel", 0);
         if (gameData != null)
         {
             int doneLevel = board.level;
@@ -92,6 +92,7 @@ public class BackToSplash : MonoBehaviour
         btn = GameObject.FindGameObjectWithTag("btne").GetComponent<Button>();
         if (btn.interactable = true)
         {
+            PlayerPrefs.SetInt("panel", 0);
             soundManager.PlayButtonSound();
             int energy = PlayerPrefs.GetInt("totalEnergy");
 

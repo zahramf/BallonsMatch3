@@ -11,35 +11,37 @@ public class PauseManager : MonoBehaviour
     Board board;
     public bool paused = false;
     public Image musicButton;
-    public Sprite soundOnSprite;
-    public Sprite soundOffSprite;
+    //public Sprite soundOnSprite;
+    //public Sprite soundOffSprite;
     public Sprite musicOnSprite;
     public Sprite musicOffSprite;
     SoundManager sound;
+    public Button btnBack;
 
     // Start is called before the first frame update
     void Start()
     {
         sound = FindObjectOfType<SoundManager>();
         board = FindObjectOfType<Board>();
+        btnBack = GetComponent<Button>();
         pausePanel.SetActive(false);
-        //In Player Prefs, the "Sound" key is for sound
-        //If sound==0 then mute, If Sound==1 unmute
-        if (PlayerPrefs.HasKey("Sound"))
-        {
-            if(PlayerPrefs.GetInt("Sound") == 0)
-            {
-                musicButton.sprite = soundOffSprite;
-            }
-            else
-            {
-                musicButton.sprite = soundOnSprite;
-            }
-        }
-        else
-        {
-            musicButton.sprite = soundOnSprite;
-        }
+        //In Player Prefs, the "Music" key is for sound
+        //If Music==0 then mute, If Music==1 unmute
+        //if (PlayerPrefs.HasKey("Music"))
+        //{
+        //    if(PlayerPrefs.GetInt("Music") == 0)
+        //    {
+        //        musicButton.sprite = musicOffSprite;
+        //    }
+        //    else
+        //    {
+        //        musicButton.sprite = musicOnSprite;
+        //    }
+        //}
+        //else
+        //{
+        //    musicButton.sprite = musicOnSprite;
+        //}
         pausePanel.SetActive(false);
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
     }
@@ -59,69 +61,84 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void Sound()
-    {
-        if (PlayerPrefs.HasKey("Sound"))
-        {
-            if(PlayerPrefs.GetInt("Sound") == 0)
-            {
-                PlayerPrefs.SetInt("Sound", 1);
-                musicButton.sprite = musicOnSprite;
-                sound.AdjactVolume();
-            }
-            else
-            {
-                PlayerPrefs.SetInt("Sound", 0);
-                musicButton.sprite = musicOffSprite;
-                sound.AdjactVolume();
-
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("Sound", 0);
-            musicButton.sprite = musicOffSprite;
-            sound.AdjactVolume();
-
-        }
-    }
-    public void SoundButton()
-    {
-        if (PlayerPrefs.HasKey("Sound"))
-        {
-            if (PlayerPrefs.GetInt("Sound") == 0)
-            {
-                musicButton.sprite = musicOnSprite;
-                PlayerPrefs.SetInt("Sound", 1);
-            }
-            else
-            {
-                musicButton.sprite = musicOffSprite;
-                PlayerPrefs.SetInt("Sound", 0);
-
-            }
-        }
-        else
-        {
-            musicButton.sprite = musicOffSprite;
-            PlayerPrefs.SetInt("Sound", 1);
-
-        }
-    }
-    //public void ExitSetting()
+    //public void Sound()
     //{
-    //    if (paused == true)
+    //    if (PlayerPrefs.HasKey("Music"))
     //    {
-    //        settingAnim.SetBool("OutSetting", true);
+    //        if(PlayerPrefs.GetInt("Music") == 0)
+    //        {
+    //            PlayerPrefs.SetInt("Music", 1);
+    //            musicButton.sprite = musicOnSprite;
+    //            sound.AdjactVolume();
+    //        }
+    //        else
+    //        {
+    //            PlayerPrefs.SetInt("Music", 0);
+    //            musicButton.sprite = musicOffSprite;
+    //            sound.AdjactVolume();
 
-    //        StartCoroutine(ExitSettingMenu());
-    //        board.currentState = GameState.move;
-    //        paused = false;
-
+    //        }
+    //    }
+    //    else
+    //    {
+    //        PlayerPrefs.SetInt("Music", 0);
+    //        musicButton.sprite = musicOffSprite;
+    //        sound.AdjactVolume();
 
     //    }
-
     //}
+
+    public void MusicButton()
+    {
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            if (PlayerPrefs.GetInt("Music") == 0)
+            {
+                musicButton.sprite = musicOnSprite;
+                PlayerPrefs.SetInt("Music", 1);
+            }
+            else
+            {
+                musicButton.sprite = musicOffSprite;
+                PlayerPrefs.SetInt("Music", 0);
+
+            }
+        }
+        else
+        {
+            musicButton.sprite = musicOffSprite;
+            PlayerPrefs.SetInt("Music", 1);
+
+        }
+    }
+    //public void SoundButton()
+    //{
+    //    if (PlayerPrefs.HasKey("Sound"))
+    //    {
+    //        if (PlayerPrefs.GetInt("Sound") == 0)
+    //        {
+    //            musicButton.sprite = musicOnSprite;
+    //            PlayerPrefs.SetInt("Sound", 1);
+    //        }
+    //        else
+    //        {
+    //            musicButton.sprite = musicOffSprite;
+    //            PlayerPrefs.SetInt("Sound", 0);
+
+    //        }
+    //    }
+    //    else
+    //    {
+    //        musicButton.sprite = musicOffSprite;
+    //        PlayerPrefs.SetInt("Sound", 1);
+
+    //    }
+    //}
+    public void ExitSetting()
+    {
+        paused = false;
+
+    }
 
     //IEnumerator ExitSettingMenu()
     //{
@@ -130,15 +147,16 @@ public class PauseManager : MonoBehaviour
     //}
     public void PauseGame()
     {
-        //if (paused == false)
+        paused = !paused;
+        //if (paused == true)
         //{
-        //    paused = true;
-        //    pausePanel.SetActive(true);
+        //    btnBack = GameObject.FindGameObjectWithTag("back").GetComponent<Button>();
+        //    btnBack.interactable = true;
         //    board.currentState = GameState.pause;
         //}
 
 
-        paused = !paused;
+       
     }
 
     public void ExitGame()

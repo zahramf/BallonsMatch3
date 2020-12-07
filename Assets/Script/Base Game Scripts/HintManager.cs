@@ -37,7 +37,7 @@ public class HintManager : MonoBehaviour
     //First, I want to find all possible matches on the board
     List<GameObject> FindAllMatches()
     {
-        //List<GameObject> possibleMoves = new List<GameObject>();
+        List<GameObject> possibleMoves = new List<GameObject>();
         for (int i = 0; i <board.width; i++)
         {
             for (int j = 0; j < board.height; j++)
@@ -48,8 +48,8 @@ public class HintManager : MonoBehaviour
                     {
                         if (board.SwitchAndCheck(i, j, Vector2.right))
                         {
-                            //possibleMoves.Add(board.allDots[i, j]);
-                            possible.Add(board.allDots[i, j]);
+                            possibleMoves.Add(board.allDots[i, j]);
+                            //possible.Add(board.allDots[i, j]);
 
                         }
 
@@ -58,8 +58,8 @@ public class HintManager : MonoBehaviour
                     {
                         if (board.SwitchAndCheck(i, j, Vector2.up))
                         {
-                            //possibleMoves.Add(board.allDots[i, j]);
-                            possible.Add(board.allDots[i, j]);
+                            possibleMoves.Add(board.allDots[i, j]);
+                            //possible.Add(board.allDots[i, j]);
 
 
                         }
@@ -67,8 +67,8 @@ public class HintManager : MonoBehaviour
                 }
             }
         }
-        //return possibleMoves;
-        return possible;
+        return possibleMoves;
+        //return possible;
 
 
     }
@@ -100,11 +100,11 @@ public class HintManager : MonoBehaviour
         }
     }
     //Destroy the hint
-    public IEnumerator DestroyHint()
+    public void DestroyHint()
     {
         if (currentHint != null)
         {
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(1f);
             move.GetComponent<Dot>().DestroyHintAnim();
             Destroy(currentHint);
             currentHint = null;
