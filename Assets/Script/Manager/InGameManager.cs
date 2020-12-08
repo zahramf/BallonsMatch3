@@ -29,6 +29,11 @@ public class InGameManager : MonoBehaviour
 
     public void OkExit()
     {
+        int energy = PlayerPrefs.GetInt("totalEnergy");
+
+        energy -= 1;
+        PlayerPrefs.SetInt("FirstE", 1);
+        PlayerPrefs.SetInt("totalEnergy", energy);
         SceneManager.LoadScene("Splash");
     }
 

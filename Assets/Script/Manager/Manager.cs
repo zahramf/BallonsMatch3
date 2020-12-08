@@ -55,17 +55,16 @@ public class Manager : MonoBehaviour
         gameData = FindObjectOfType<GameData>();
         backSplash = FindObjectOfType<BackToSplash>();
 
-        //UpdateEnergy();
-        //Debug.Log("coinManager" + coint);
+     
         int tutal = PlayerPrefs.GetInt("totalEnergy");
        int firstEnergy = PlayerPrefs.GetInt("FirstE");
-        if (tutal == 0 && firstEnergy != 1)
+        if (tutal == 1 && firstEnergy != 1)
         {
 
             PlayerPrefs.SetInt("totalEnergy", 5);
             Loade();
 
-            //StartCoroutine(RestoreRoutine());
+            StartCoroutine(RestoreRoutine());
         }
         else
         {

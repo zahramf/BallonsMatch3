@@ -13,7 +13,7 @@ public class SoundScript : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("musicGame") == 1)
         {
-            Debug.Log("play");
+          
             if (clip == null)
                 Instance.musicSource.Stop();
             if (Instance.musicSource.clip == clip && Instance.musicSource.isPlaying)
@@ -27,11 +27,11 @@ public class SoundScript : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("musicGame") == 0)
         {
-            Debug.Log("pause");
+            
 
             Instance.musicSource.clip = null;
-            Instance.musicSource.Play();
-            Instance.musicSource.volume = 0;
+            //Instance.musicSource.Play();
+            //Instance.musicSource.volume = 0;
           
         }
        
@@ -39,6 +39,7 @@ public class SoundScript : MonoBehaviour
 
     void Awake()
     {
+        
         Debug.Log("awake" + PlayerPrefs.GetInt("musicGame"));
         if (Instance != null && Instance != this)
         {

@@ -17,7 +17,7 @@ public class StartManager : MonoBehaviour
     void Start()
     {
         Debug.Log("start" + PlayerPrefs.GetInt("musicGame"));
-
+        PlayerPrefs.SetInt("musicGame", 1);
         backgroundMusic = GetComponent<AudioSource>();
         SoundScript.Play(startMusic);
         settingPanel.SetActive(false);
@@ -48,19 +48,12 @@ public class StartManager : MonoBehaviour
         Debug.Log("musicGame" + PlayerPrefs.GetInt("musicGame"));
         if (sound == 1)
         {
-            Debug.Log("sound" + sound);
             SoundScript.Play(startMusic);
-            //GameObject.Find("musicGame").GetComponent<AudioSource>().volume = 1;
             PlayerPrefs.SetInt("musicGame", 0);
-            //sound = 0;
         }
         else if (sound == 0)
         {
             SoundScript.Play(startMusic);
-            //GameObject.Find("musicGame").GetComponent<AudioSource>().volume = 1;
-
-            //sound = 1;
-            Debug.Log("sound" + sound);
             PlayerPrefs.SetInt("musicGame", 1);
 
         }

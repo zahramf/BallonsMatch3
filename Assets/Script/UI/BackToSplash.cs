@@ -67,6 +67,11 @@ public class BackToSplash : MonoBehaviour
         PlayerPrefs.SetInt("panel", 0);
         if (gameData != null)
         {
+            int energy = PlayerPrefs.GetInt("totalEnergy");
+
+            energy -= 1;
+            PlayerPrefs.SetInt("FirstE", 1);
+            PlayerPrefs.SetInt("totalEnergy", energy);
             gameData.saveData.isActive[board.level] = true;
             gameData.Save();
 
